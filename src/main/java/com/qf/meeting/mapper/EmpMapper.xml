@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.meeting.mapper.EmpMapper">
+
+
+	<select id="getList" resultType="Emp">
+		select * from emp
+	</select>
+
+	<select id="getByDeptId" resultType="Emp">
+		select * from emp where
+		deptId = #{deptId}
+	</select>
+
+	<select id="getById" resultType="Emp">
+		select * from emp where empId =
+		#{empId}
+	</select>
+
+	<insert id="add" parameterType="Emp">
+		insert into emp
+		values(null,#{photo},#{empName},#{empTel},#{deptId})
+	</insert>
+
+	<update id="update" parameterType="Emp">
+		update emp
+		<set>
+			<if test="photo != null and photo != ''">
+				photo=#{photo},
+			</if>
+			<if test="empTel != null and empTel != ''">
+				empTel=#{empTel},
+			</if>
+			<if test="deptId != null and deptId != ''">
+				deptId=#{deptId},
+			</if>
+		</set>
+		where empId=#{empId}
+
+
+	</update>
+
+	<delete id="deleteById">
+		delete from emp where empId=#{empId}
+	</delete>
+
+	<delete id="deleteByIds">
+		delete from emp where empId in
+		<foreach collection="collection" item="id" open="(" close=")"
+			separator=",">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
+  
+  

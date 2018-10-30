@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<dept deptId="1" deptName="部门名" deptDes="部门描述"/>
+	<dept deptId="2" deptName="部门名" deptDes="部门描述"/>
+</dataset>

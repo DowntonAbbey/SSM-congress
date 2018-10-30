@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.meeting.mapper.UserStaffMapper">
+
+	<select id="getByStaffId" resultType="UserStaff">
+		select * from user_staff where staffId = #{staffId}
+	</select>
+	
+	<select id="getByUserId" resultType="UserStaff">
+		select * from user_staff where userId = #{userId}
+	</select>
+	
+	<insert id="add" parameterType="UserStaff">
+		insert into user_staff values(null,#{userId},#{staffId})
+	</insert>
+	
+	<update id="updateByUserId" parameterType="UserStaff">
+		update user_staff set staffId=#{staffId} where userId=#{userId}
+	</update>
+	
+	<update id="updateByStaffId" parameterType="UserStaff">
+		update user_staff set userId=#{userId} where staffId=#{staffId}
+	</update>
+	
+	<delete id="deleteByUserId">
+		delete from user_staff where userId = #{userId}
+	</delete>
+	
+	<delete id="deleteByStaffId">
+		delete from user_staff where staffId = #{staffId}
+	</delete>
+	
+	<delete id="deleteByUserIds">
+		delete from user_staff where userId in
+		<foreach collection="collection" item="userId" separator="," open="(" close=")">
+			#{userId}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteByStaffIds">
+		delete from user_staff where staffId in
+		<foreach collection="collection" item="staffId" separator="," open="(" close=")">
+			#{staffId}
+		</foreach>
+	</delete>
+</mapper>

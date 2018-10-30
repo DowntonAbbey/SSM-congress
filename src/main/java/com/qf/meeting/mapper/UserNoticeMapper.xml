@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.meeting.mapper.UserNoticeMapper">
+	<select id="getByNoticeId" resultType="UserNotice">
+		select * from user_notice where noticeId = #{noticeId}
+	</select>
+	
+	<select id="getByUserId" resultType="UserNotice">
+		select * from user_notice where userId = #{userId}
+	</select>
+	
+	<insert id="add" parameterType="UserNotice">
+		insert into user_notice values(null,#{userId},#{noticeId})
+	</insert>
+	
+	<update id="updateByUserId" parameterType="UserNotice">
+		update user_notice set noticeId=#{noticeId} where userId=#{userId}
+	</update>
+	
+	<update id="updateByNoticeId" parameterType="UserNotice">
+		update user_notice set userId=#{userId} where noticeId=#{noticeId}
+	</update>
+	
+	<delete id="deleteByUserId">
+		delete from user_notice where userId = #{userId}
+	</delete>
+	
+	<delete id="deleteByNoticeId">
+		delete from user_notice where noticeId = #{noticeId}
+	</delete>
+	
+	<delete id="deleteByUserIds">
+		delete from user_notice where userId in
+		<foreach collection="collection" item="userId" separator="," open="(" close=")">
+			#{userId}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteByNoticeIds">
+		delete from user_notice where noticeId in
+		<foreach collection="collection" item="noticeId" separator="," open="(" close=")">
+			#{noticeId}
+		</foreach>
+	</delete>
+</mapper>

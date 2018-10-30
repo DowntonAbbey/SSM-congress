@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<user_staff id="1" userId="1" staffId="1"/>
+	<user_staff id="2" userId="2" staffId="1"/>
+	<user_staff id="3" userId="2" staffId="2"/>
+	<user_staff id="4" userId="1" staffId="2"/>
+</dataset>

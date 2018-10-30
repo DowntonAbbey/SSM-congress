@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<emp empId="1" photo="head.jpg" empName="jack" empTel="18408250060" deptId="1" />
+	<emp empId="2" photo="head.jpg" empName="jack" empTel="18408250060" deptId="1" />
+</dataset>

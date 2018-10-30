@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.qf.meeting.mapper.StaffMapper">
+  	<select id="getList" resultType="Staff">
+  		select * from staff
+  	</select>
+  	
+  	<select id="getById" resultType="Staff">
+  		select * from staff where staffId = #{staffId}
+  	</select>
+  	
+  	<insert id="add" parameterType="Staff">
+  		insert into staff values(null,#{staffName})
+  	</insert>
+  	
+  	<update id="update" parameterType="Staff">
+  		update staff
+  		<set>
+  			<if test="staffName != null and staffName!= ''">
+  				staffName = #{staffName},
+  			</if>
+  
+  		</set>
+  		where staffId = #{staffId}
+  	</update>
+  	
+  	<delete id="deleteById">
+  		delete from staff where staffId = #{staffId}
+  	</delete>
+  	
+  	<delete id="deleteByIds">
+  		delete from staff where staffId in
+  		<foreach collection="collection" item="staffId" open="(" close=")" separator=",">
+  			#{staffId}
+  		</foreach>
+  	</delete>
+  
+  </mapper>

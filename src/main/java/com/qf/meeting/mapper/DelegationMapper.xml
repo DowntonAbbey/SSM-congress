@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.qf.meeting.mapper.DelegationMapper">
+  	<select id="getList" resultType="Delegation">
+  		select * from delegation
+  	</select>
+  	
+  	<select id="getById" resultType="Delegation">
+  		select * from delegation where delegationId = #{delegationId}
+  	</select>
+  	
+  	<insert id="add" parameterType="Delegation">
+  		insert into delegation values(null,#{delegationName},#{delegationDes})
+  	</insert>
+  	
+  	<update id="update" parameterType="Delegation">
+  		update delegation
+  		<set>
+  			<if test="delegationName != null and delegationName!= ''">
+  				delegationName = #{delegationName},
+  			</if>
+  			<if test="delegationDes != null and delegationDes != ''">
+  				delegationDes = #{delegationDes},
+  			</if> 
+  		</set>
+  		where delegationId = #{delegationId}
+  	</update>
+  	
+  	<delete id="deleteById">
+  		delete from delegation where delegationId = #{delegationId}
+  	</delete>
+  	
+  	<delete id="deleteByIds">
+  		delete from delegation where delegationId in
+  		<foreach collection="collection" item="delegationId" open="(" close=")" separator=",">
+  			#{delegationId}
+  		</foreach>
+  	</delete>
+  
+  </mapper>

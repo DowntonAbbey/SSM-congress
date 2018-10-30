@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.qf.meeting.mapper.SeatMapper">
+  	<select id="getList" resultType="Seat">
+  		select * from seat 
+  	</select>
+  	
+  	<select id="getByIds" resultType="Seat">
+  		select * from seat where seatId in
+  		<foreach collection="list" item="seatId" open="(" close=")" separator=",">
+  			#{seatId}
+  		</foreach>
+  	</select>
+  	
+  	<select id="getByNoticeIds" resultType="Seat">
+  		select * from seat where noticeId in
+  		<foreach collection="list" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</select>
+  	
+  	<select id="getById" resultType="Seat">
+  		select * from seat where seatId = #{seatId}
+  	</select>
+  	
+  	<insert id="add" parameterType="Seat">
+  		insert into seat values(null,#{noticeName},#{noticeTime},#{noticeAddress},#{seatNum},#{noticeId})
+  	</insert>
+  	
+  	<update id="update" parameterType="Seat">
+  		update seat
+  		<set>
+  			<if test="noticeName != null and noticeName != ''">
+  				noticeName = #{noticeName},
+  			</if>
+  			<if test="noticeTime != null and noticeTime != ''">
+  				noticeTime= #{noticeTime},
+  			</if> 
+  			<if test="noticeAddress != null and noticeAddress != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if>
+  			<if test="seatNum != null and seatNum != ''">
+  				seatNum = #{seatNum},
+  			</if> 
+  			<if test="noticeId != null and noticeId != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if> 
+  		</set>
+  		where seatId = #{seatId}
+  	</update>
+  	
+  	<delete id="deleteById">
+  		delete from seat where seatId = #{seatId}
+  	</delete>
+  	
+  	<delete id="deleteByIds">
+  		delete from seat where seatId in
+  		<foreach collection="collection" item="seatId" open="(" close=")" separator=",">
+  			#{seatId}
+  		</foreach>
+  	</delete>
+  	
+  	<delete id="deleteByNoticeIds">
+  		delete from seat where noticeId in
+  		<foreach collection="collection" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</delete>
+  
+  </mapper>

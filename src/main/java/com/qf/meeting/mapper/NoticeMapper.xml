@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.qf.meeting.mapper.NoticeMapper">
+  	<select id="getList" resultType="Notice">
+  		select * from notice 
+  	</select>
+  	
+  	<select id="getByIds" resultType="Notice">
+  		select * from notice where noticeId in
+  		<foreach collection="list" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</select>
+  	
+  	<select id="getById" resultType="Notice">
+  		select * from notice where noticeId = #{noticeId}
+  	</select>
+  	
+  	<insert id="add" parameterType="Notice">
+  		insert into notice values(null,#{noticeTime},#{noticeTime},#{noticeAddress})
+  	</insert>
+  	
+  	<update id="update" parameterType="Notice">
+  		update notice
+  		<set>
+  			<if test="noticeTime != null and noticeTime != ''">
+  				noticeTime = #{noticeTime},
+  			</if>
+  			<if test="noticeTitle != null and noticeTitle != ''">
+  				noticeTitle= #{noticeTitle},
+  			</if> 
+  			<if test="noticeAddress != null and noticeAddress != ''">
+  				noticeAddress= #{noticeAddress},
+  			</if> 
+  		</set>
+  		where noticeId = #{noticeId}
+  	</update>
+  	
+  	<delete id="deleteById">
+  		delete from notice where noticeId = #{noticeId}
+  	</delete>
+  	
+  	<delete id="deleteByIds">
+  		delete from notice where noticeId in
+  		<foreach collection="collection" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</delete>
+  
+  </mapper>

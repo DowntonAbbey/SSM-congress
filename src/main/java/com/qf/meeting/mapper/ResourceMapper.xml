@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.qf.meeting.mapper.ResourceMapper">
+  	<select id="getList" resultType="Resource">
+  		select * from resource 
+  	</select>
+  	
+  	<select id="getByIds" resultType="Resource">
+  		select * from resource where resourceId in
+  		<foreach collection="list" item="resourceId" open="(" close=")" separator=",">
+  			#{resourceId}
+  		</foreach>
+  	</select>
+  	
+  	<select id="getByNoticeIds" resultType="Resource">
+  		select * from resource where noticeId in
+  		<foreach collection="list" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</select>
+  	
+  	<select id="getById" resultType="Resource">
+  		select * from resource where resourceId = #{resourceId}
+  	</select>
+  	
+  	<insert id="add" parameterType="Resource">
+  		insert into resource values(null,#{noticeName},#{noticeAddress},#{resourceDetail},#{noticeId})
+  	</insert>
+  	
+  	<update id="update" parameterType="Resource">
+  		update resource
+  		<set>
+  			<if test="noticeName != null and noticeName != ''">
+  				noticeName = #{noticeName},
+  			</if>
+  			<if test="noticeAddress != null and noticeAddress != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if>
+  			<if test="resourceDetail != null and resourceDetail != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if> 
+  			<if test="noticeId != null and noticeId != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if> 
+  		</set>
+  		where resourceId = #{resourceId}
+  	</update>
+  	
+  	<delete id="deleteById">
+  		delete from resource where resourceId = #{resourceId}
+  	</delete>
+  	
+  	<delete id="deleteByIds">
+  		delete from resource where resourceId in
+  		<foreach collection="collection" item="resourceId" open="(" close=")" separator=",">
+  			#{resourceId}
+  		</foreach>
+  	</delete>
+  	
+  	<delete id="deleteByNoticeIds">
+  		delete from resource where noticeId in
+  		<foreach collection="collection" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</delete>
+  
+  </mapper>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<delegation delegationId="1" delegationName="代表团名" delegationDes="代表团描述"/>
+	<delegation delegationId="2" delegationName="代表团名" delegationDes="代表团描述"/>
+</dataset>

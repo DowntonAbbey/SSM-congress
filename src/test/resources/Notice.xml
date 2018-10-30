@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<notice noticeId="1" noticeTime="2018-1-1" noticeTitle="通知标题"
+		noticeAddress="通知地址" />
+	<notice noticeId="2" noticeTime="2018-1-1" noticeTitle="通知标题"
+		noticeAddress="通知地址" />
+</dataset>

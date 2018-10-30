@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<user userId="1" userLoginName="lisi1" telNum="18408250060"
+		password="123" photo="head.jpg" userRealName="李四" delegationId="1" />
+	<user userId="2" userLoginName="lisi2" telNum="18408250060"
+		password="123" photo="head.jpg" userRealName="李四" delegationId="1" />
+</dataset>
+

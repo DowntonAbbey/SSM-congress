@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.qf.meeting.mapper.AgendaMapper">
+  	<select id="getList" resultType="Agenda">
+  		select * from agenda 
+  	</select>
+  	
+  	<select id="getByIds" resultType="Agenda">
+  		select * from agenda where agendaId in
+  		<foreach collection="list" item="agendaId" open="(" close=")" separator=",">
+  			#{agendaId}
+  		</foreach>
+  	</select>
+  	
+  	<select id="getByNoticeIds" resultType="Agenda">
+  		select * from agenda where noticeId in
+  		<foreach collection="list" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</select>
+  	
+  	<select id="getById" resultType="Agenda">
+  		select * from agenda where agendaId = #{agendaId}
+  	</select>
+  	
+  	<insert id="add" parameterType="Agenda">
+  		insert into agenda values(null,#{noticeName},#{noticeTime},#{noticeAddress},#{agendaDetail},#{noticeId})
+  	</insert>
+  	
+  	<update id="update" parameterType="Agenda">
+  		update agenda
+  		<set>
+  			<if test="noticeName != null and noticeName != ''">
+  				noticeName = #{noticeName},
+  			</if>
+  			<if test="noticeName != null and noticeName != ''">
+  				noticeName= #{noticeName},
+  			</if> 
+  			<if test="noticeAddress != null and noticeAddress != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if>
+  			<if test="agendaDetail != null and agendaDetail != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if> 
+  			<if test="noticeId != null and noticeId != ''">
+  				noticeAddress = #{noticeAddress},
+  			</if> 
+  		</set>
+  		where agendaId = #{agendaId}
+  	</update>
+  	
+  	<delete id="deleteById">
+  		delete from agenda where agendaId = #{agendaId}
+  	</delete>
+  	
+  	<delete id="deleteByIds">
+  		delete from agenda where agendaId in
+  		<foreach collection="collection" item="agendaId" open="(" close=")" separator=",">
+  			#{agendaId}
+  		</foreach>
+  	</delete>
+  	
+  	<delete id="deleteByNoticeIds">
+  		delete from agenda where noticeId in
+  		<foreach collection="collection" item="noticeId" open="(" close=")" separator=",">
+  			#{noticeId}
+  		</foreach>
+  	</delete>
+  
+  </mapper>

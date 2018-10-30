@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<news newsId="1" newsTitle="新闻标题" newsDes="新闻描述" newsDetail="新闻细节" type="1" photo="news.jpg"/>
+	<news newsId="2" newsTitle="新闻标题" newsDes="新闻描述" newsDetail="新闻细节" type="1" photo="news.jpg"/>
+	
+	<agenda agendaId="1" noticeName="通知名" noticeTime="2018-1-1" noticeAddress="通知地址" agendaDetail="议程细节" noticeId="1"/>
+	<agenda agendaId="2" noticeName="通知名" noticeTime="2018-1-1" noticeAddress="通知地址" agendaDetail="议程细节" noticeId="1"/>
+		
+	<resource resourceId="1" noticeName="通知名" noticeAddress="通知地址" resourceDetail="资料详情" noticeId="1"/>
+	<resource resourceId="2" noticeName="通知名" noticeAddress="通知地址" resourceDetail="资料详情" noticeId="1"/>
+	
+	<seat seatId="1" noticeName="通知名" noticeTime="2018-1-1" noticeAddress="通知地址" seatNum="座位号" noticeId="1"/>
+	<seat seatId="2" noticeName="通知名" noticeTime="2018-1-1" noticeAddress="通知地址" seatNum="座位号" noticeId="1"/>
+	
+	
+	
+</dataset>
