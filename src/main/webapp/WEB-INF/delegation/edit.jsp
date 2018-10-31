@@ -49,49 +49,20 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/user/update" method="post">
+                                            <form action="${pageContext.request.contextPath}/delegation/update.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">登录名：</td>
-                                                        <td width="25%"><input class="text" value="${user.userLoginName }" name="userLoginName"/></td>
-                                                        <input type="hidden" value="${user.userId }" name="userId"/>
+                                                        <td width="8%">代表团名：</td>
+                                                        <td width="25%"><input class="text" value="${delegation.delegationName }" name="delegationName"/></td>
+                                                        <input type="hidden" value="${delegation.delegationId }" name="delegationId"/>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>电话号：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="telNum" value="${user.telNum}"/></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>选择图片：</td>
-                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="photo" value="${user.photo}"/></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="8%">姓名：</td>
-                                                        <td>
-                                                        	<td width="25%"><input type="text" class="text" placeholder="必填" name="userRealName" value="${user.userRealName}"/></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td>职位：</td>
-                                                        <td><input class="text" value="${user.staff.staffName } " name="staffName" /></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td>代表团：</td>
-                                                        <td><input class="text" value="${user.delegation.delegationName} " name="delegationName" /></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>代表团描述：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="delegationDes" value="${delegation.delegationDes}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>

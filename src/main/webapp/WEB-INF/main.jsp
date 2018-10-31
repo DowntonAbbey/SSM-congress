@@ -9,14 +9,14 @@
 
 <!--导入样式文件-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/static/css/themes/icon.css" />
+	href="${pageContext.request.contextPath}/static/Style/themes/icon.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/static/css/themes/default/easyui.css" />
+	href="${pageContext.request.contextPath}/static/Style/themes/default/easyui.css" />
 <!--导入js的文件-->
-<script src="${pageContext.request.contextPath}/static/js/jquery.min.js"
+<script src="${pageContext.request.contextPath}/static/Js/jquery.min.js"
 	type="text/javascript" charset="utf-8"></script>
 <script
-	src="${pageContext.request.contextPath}/static/js/jquery.easyui.min.js"
+	src="${pageContext.request.contextPath}/static/Js/jquery.easyui.min.js"
 	type="text/javascript" charset="utf-8"></script>
 
 </head>
@@ -27,33 +27,32 @@
 		<div class="easyui-layout" data-options="fit:true">
 			<div data-options="region:'west'" style="width: 180px">
 				<!--编写我们的菜单-->
-				<a id="btn" href="#" onclick="addTable('用户管理','page/userList')"
+				<a id="btn" href="#" onclick="addTable('用户管理','/user/list.action')"
 					class="easyui-linkbutton" data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">用&nbsp;&nbsp;户&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br />
-				<a id="btn" href="#" class="easyui-linkbutton"
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('职位管理','staff/list.action')"
 					data-options="iconCls:'icon-edit'"
-					style="margin-top: 10px; width: 170px;">职&nbsp;&nbsp;位&nbsp;&nbsp;管&nbsp;&nbsp;理</a>
-				<br /> <a id="btn" href="#" class="easyui-linkbutton"
+					style="margin-top: 10px; width: 170px;">职&nbsp;&nbsp;位&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br /> 
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('代表团管理','delegation/list.action')"
 					data-options="iconCls:'icon-edit'"
-					style="margin-top: 10px; width: 170px;">代&nbsp;表&nbsp;团&nbsp;管&nbsp;理</a>
-				<br /> <a id="btn" href="#" class="easyui-linkbutton"
+					style="margin-top: 10px; width: 170px;">代&nbsp;表&nbsp;团&nbsp;管&nbsp;理</a><br /> 
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('员工管理','emp/list.action')"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">员&nbsp;&nbsp;工&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br />
-				<a id="btn" href="#" class="easyui-linkbutton"
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('部门管理','dept/list.action')"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">部&nbsp;&nbsp;门&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br />
-				<a id="btn" href="#" onclick="addTable('会议新闻管理','page/newsList')"
-				class="easyui-linkbutton"
+				<a id="btn" href="#" onclick="addTable('会议新闻管理','news/list.action')" class="easyui-linkbutton"
 					data-options="iconCls:'icon-edit'"
-					style="margin-top: 10px; width: 170px;">会议新闻管理</a><br /> <a
-					id="btn" href="#" class="easyui-linkbutton"
+					style="margin-top: 10px; width: 170px;">会议新闻管理</a><br /> 
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('会议通知管理','/notice/list.action')"
 					data-options="iconCls:'icon-edit'"
-					style="margin-top: 10px; width: 170px;">会议通知管理</a><br /> <a
-					id="btn" href="#" class="easyui-linkbutton"
-					data-options="iconCls:'icon-edit'"
-					style="margin-top: 10px; width: 170px;">会议议程管理</a><br /> <a
-					id="btn" href="#" class="easyui-linkbutton"
-					data-options="iconCls:'icon-edit'"
+					style="margin-top: 10px; width: 170px;">会议通知管理</a><br /> 
+				<a id="btn" href="#" class="easyui-linkbutton"
+					data-options="iconCls:'icon-edit'" onclick="addTable('会议议程管理','agenda/list.action')"
+					style="margin-top: 10px; width: 170px;">会议议程管理</a><br /> 
+				<a id="btn" href="#" class="easyui-linkbutton"
+					data-options="iconCls:'icon-edit'" onclick="addTable('座次安排管理','seat/list.action')"
 					style="margin-top: 10px; width: 170px;">座次安排管理</a><br />
 			</div>
 			<div data-options="region:'center'">
@@ -95,6 +94,7 @@
 				+ '" style="width:100%;height:100%;"></iframe>';
 
 		var b = $("#tt").tabs("exists", tabName);
+		console.log("url:"+url);
 		if (!b) {
 			$('#tt').tabs('add', {
 				title : tabName,
@@ -102,8 +102,7 @@
 				closable : true,
 			});
 		} else {
-
-			$("#tt").tabs("select", val);
+			$("#tt").tabs("select", tabName);
 		}
 
 	}

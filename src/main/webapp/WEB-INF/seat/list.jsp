@@ -8,8 +8,26 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 <script type="text/javascript">
 	function goPage(pageIndex){
-		$("#form1").attr("action","${pageContext.request.contextPath}/emp/list/"+pageIndex);
+		$("#form1").attr("action","${pageContext.request.contextPath}/news/list");
 		$("#form1").submit();
+	}
+	function add() {
+		window.location.href = "${pageContext.request.contextPath}/page/news/add";
+	}
+	
+	function deleteByNewsIds() {        
+		var chk_value = [];//定义一个数组        
+		//利用将name等于ids的多选按钮得到       
+		$("input[name='ids']:checked").each(function() {        
+			//将选中额数据存到数组里       
+			chk_value.push($(this).val());        
+			});
+		if (chk_value.length == 0) {            
+			alert("你还没有选择任何内容！");        
+			}       
+		if (chk_value.length > 0) {           
+			location.href ="${pageContext.request.contextPath}/news/deleteByIds?idString=" + chk_value;        
+			}
 	}
 </script>
 </head>
@@ -24,7 +42,7 @@
 				<table width="100%" height="31" border="0" cellpadding="0"
 					cellspacing="0" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
 					<tr>
-						<td height="31"><div class="title">用户管理</div></td>
+						<td height="31"><div class="title">新闻管理</div></td>
 					</tr>
 				</table>
 			</td>
@@ -50,7 +68,7 @@
 							<form class="clearfix" action="${pageContext.request.contextPath}/emp/list/1" id="form1" method="post">
 								<div style="float: left">
 									<p style="float: left; margin-left: 30px;">
-										<label>姓名：</label>
+										<label>新闻标题：</label>
 										<input class="text" list="rolelist" name="name" value="${p.bean}" style="width: 80px;" />
 									</p>
 									&nbsp;&nbsp;&nbsp;
@@ -60,9 +78,9 @@
 									</p>
 								</div>
 								<div style="float: right">
-									<input type="button" onclick='window.location="add.html"'
+									<input type="button" onclick='add()'
 										class="btn" value="添加" /> &nbsp;&nbsp;&nbsp; <input
-										type="button" class="btn" value="批量删除" />
+										type="button" class="btn" onclick='deleteByNewsIds()' value="批量删除" />
 								</div>
 							</form> <datalist id="rolelist">
 							<option></option>
@@ -92,28 +110,23 @@
 											<table width="100%" class="cont tr_color">
 												<tr>
 													<th><input type="checkbox" value="" /></th>
-													<th>登录名</th>
-													<th>手机号码</th>
-													<th>头像</th>
-													<th>真实姓名</th>
-													<th>代表团</th>
+													<th>新闻标题</th>
+													<th>新闻描述</th>
+													<th>新闻细节</th>
+													<th>新闻类型</th>
+													<th>照片地址</th>
 													<th>操作</th>
 												</tr>
-											<c:forEach items="${p.list}" var="e">
+											<c:forEach items="${list}" var="e">
 												<tr align="center" class="d">
-													<td><input type="checkbox" value="" /></td>
-													<td>${e.number}</td>
-													<td><a href="view.html">${e.name}</a></td>
-													<td>${e.sex}</td>
-													<td>${e.age}</td>
-													<td>${e.idcard}</td>
-													<td>${e.phone}</td>
-													<td>${e.address}</td>
-													<td>${e.entrytime}</td>
-													<td>${e.quittime}</td>
-													<td>${e.state}</td>
-													<td><a href="edit.html">修改</a>&nbsp;&nbsp; <a
-														href="javascript:void(0)" onclick="del()">删除</a></td>
+													<td><input type="checkbox" value="${e.newsId }" name="ids" /></td>
+													<td>${e.newsTitle}</td>
+													<td><a href="view.html">${e.newsDes}</a></td>
+													<td>${e.newsDetail}</td>
+													<td>${e.type eq '0'?'文本':''}${e.type eq '1'?'照片':''}</td>
+													<td>${e.photo}</td>
+													<td><a href="${pageContext.request.contextPath}/news/updateById/${e.newsId}">修改</a>&nbsp;&nbsp; <a
+														href="${pageContext.request.contextPath}/news/deleteById/${e.newsId}" onclick="del()">删除</a></td>
 												</tr>
                                                 </c:forEach>
 											</table>

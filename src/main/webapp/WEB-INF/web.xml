@@ -40,7 +40,7 @@
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
 		<!--不能写/*，必须写/，这是REST URL风格的要求，REST风格会在后面介绍 -->
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
 
 	<!-- 解决工程编码过滤器 -->

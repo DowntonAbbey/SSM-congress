@@ -34,9 +34,9 @@
   			<if test="newsDetail != null and newsDetail != ''">
   				newsDetail= #{newsDetail},
   			</if> 
-  			<if test="type != null and type != ''">
+  			
   				type= #{type},
-  			</if> 
+  			
   			<if test="photo != null and photo != ''">
   				photo= #{photo},
   			</if> 

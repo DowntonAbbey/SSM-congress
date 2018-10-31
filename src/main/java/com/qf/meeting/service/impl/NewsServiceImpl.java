@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.News;
 import com.qf.meeting.mapper.NewsMapper;
 import com.qf.meeting.service.NewsService;
 
 @Service
+@Transactional
 public class NewsServiceImpl implements NewsService {
 
 	@Autowired

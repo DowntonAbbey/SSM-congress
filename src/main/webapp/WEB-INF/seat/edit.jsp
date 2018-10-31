@@ -49,49 +49,43 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/user/update" method="post">
+                                            <form action="${pageContext.request.contextPath}/news/update" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">登录名：</td>
-                                                        <td width="25%"><input class="text" value="${user.userLoginName }" name="userLoginName"/></td>
-                                                        <input type="hidden" value="${user.userId }" name="userId"/>
+                                                        <td width="8%">新闻标题：</td>
+                                                        <td width="25%"><input class="text" value="${news.newsTitle }" name="newsTitle"/></td>
+                                                        <input type="hidden" value="${news.newsId }" name="newsId"/>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>电话号：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="telNum" value="${user.telNum}"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>新闻描述：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="newsDes" value="${news.newsDes}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>选择图片：</td>
-                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="photo" value="${user.photo}"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>新闻细节：</td>
+                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="newsDetail" value="${news.newsDetail }"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">姓名：</td>
+                                                        <td>新闻类型：</td>
                                                         <td>
-                                                        	<td width="25%"><input type="text" class="text" placeholder="必填" name="userRealName" value="${user.userRealName}"/></td>
+                                                        	<input  type="radio" name="type" ${news.type eq '0'?'checked':'' } value='0'/>文本
+				                                            <input  type="radio" name="type" ${news.type eq '1'?'checked':'' } value='1'/>照片</td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>职位：</td>
-                                                        <td><input class="text" value="${user.staff.staffName } " name="staffName" /></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td>代表团：</td>
-                                                        <td><input class="text" value="${user.delegation.delegationName} " name="delegationName" /></td>
+                                                        <td>照片地址：</td>
+                                                        <td><input class="text" value="${news.photo } " name="photo" /></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>

@@ -49,90 +49,47 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/user/update" method="post">
+                                            <form action="${pageContext.request.contextPath}/news/update.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">姓名：</td>
-                                                        <td width="25%"><input class="text" value="${user.userName }" name="userName"/></td>
-                                                        <input type="hidden" value="${user.userId }" name="userId"/>
+                                                        <td width="8%">新闻标题：</td>
+                                                        <td width="25%"><input class="text" value="${news.newsTitle }" name="newsTitle"/></td>
+                                                        <input type="hidden" value="${news.newsId }" name="newsId"/>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>帐号：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填,唯一验证" name="userLoginName" value="${user.userLoginName }"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>新闻描述：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="newsDes" value="${news.newsDes}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>密码：</td>
-                                                        <td width="25%"><input type="password" class="text" placeholder="必填" name="userPwd" value="${user.userPwd }"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>新闻细节：</td>
+                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="newsDetail" value="${news.newsDetail }"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>性别：</td>
-                                                        <td><input  type="radio" name="sex" checked="${user.sex='男'?'checked':'' }"/>男
-				                            <input  type="radio" name="sex"  checked="${user.sex='女'?'checked':'' }"/>女</td>
+                                                        <td>新闻类型：</td>
+                                                        <td>
+                                                        	<input  type="radio" name="type" ${news.type eq '0'?'checked':'' } value='0'/>文本
+				                                            <input  type="radio" name="type" ${news.type eq '1'?'checked':'' } value='1'/>照片</td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>年龄：</td>
-                                                        <td><input class="text" value="${user.userAge }" name="userAge" /></td>
+                                                        <td>照片地址：</td>
+                                                        <td><input class="text" value="${news.photo } " name="photo" /></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td>身份证号：</td>
-                                                        <td><input class="text" value="${user.cardId }" name="cardId" /></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>电话：</td>
-                                                        <td><input class="text" value="${user.tel }" name="tel" /></td>
-                                                        <td></td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>地址：</td>
-                                                        <td><input class="text" value="${user.address }" name="address" /></td>
-                                                        <td></td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>入职时间：</td>
-                                                        <td><input class="text" value="${user.enterTime }" name="enterTime" /></td>
-                                                        <td></td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>离职时间：</td>
-                                                        <td><input class="text" value="${user.leaveTime }" name="leaveTime" } /></td>
-                                                        <td></td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td>&nbsp;</td>
-                                                        <td>状态：</td>
-                                                        <td><select style="width:55px" name="state">
-                                                            	<option  selected=" ${user.state='0'?'selected':'' }" value="0" >禁用</option>
-                                                                <option selected="${user.state='1'?'selected':''}" value="1">启用</option>
-                                                            </select></td>
-                                                        <td></td>
-                                                        <td>&nbsp;</td>
-                                                    </tr>
+                                                    
                                                     <tr>
                                                         <td>&nbsp;</td>
                                                          <td colspan="2" align="center">
