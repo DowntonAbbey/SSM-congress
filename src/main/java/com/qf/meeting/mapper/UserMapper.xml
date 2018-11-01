@@ -3,21 +3,47 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.meeting.mapper.UserMapper">
+	<resultMap type="User" id="userResult">
+		<id property="userId" column="uId" />
+		<result property="userLoginName" column="userLoginName" />
+		<result property="telNum" column="telNum" />
+		<result property="photo" column="photo" />
+		<result property="userRealName" column="userRealName" />
+		<association property="delegation"
+			javaType="com.qf.meeting.bean.Delegation">
+			<id property="delegationId" column="dId" />
+			<result property="delegationName" column="delegationName" />
+			<result property="delegationDes" column="delegationDes" />
+		</association>
+		<collection property="staffs"
+			ofType="com.qf.meeting.bean.Staff">
+			<id property="staffId" column="sId" />
+			<result property="staffName" column="staffName" />
+		</collection>
+	</resultMap>
 	<!-- 通过用户名查找用户 -->
+	<select id="getList" resultMap="userResult">
+		SELECT u.userId as
+		uId,userLoginName,telNum,photo,userRealName,d.delegationId as
+		dId,delegationName,delegationDes,s.staffId as sId,staffName
+		FROM USER u
+		LEFT JOIN delegation d ON u.delegationId=d.delegationId
+		LEFT JOIN user_staff us ON u.userId=us.userId
+		LEFT JOIN staff s ON s.staffId = us.staffId
+	</select>
+
+
+	<!-- 查找所用用户 -->
 	<select id="getByUserName" resultType="User">
 		select * from user where
 		userLoginName = #{userLoginName}
 	</select>
 
-	<!-- 查找所用用户 -->
-	<select id="getList" resultType="User">
-		select * from user
-	</select>
-
 	<!-- 新增用户 -->
-	<insert id="add" parameterType="User" keyProperty="userId" useGeneratedKeys="true">
+	<insert id="add" parameterType="User" keyProperty="userId"
+		useGeneratedKeys="true">
 		insert into user
-		values(null,#{userLoginName},#{telNum},#{password},#{photo},#{userRealName},#{delegationId})
+		values(null,#{userLoginName},#{telNum},#{password},#{photo},#{userRealName},#{delegation.delegationId})
 	</insert>
 
 	<!-- 修改用户 -->
@@ -39,31 +65,38 @@
 			<if test="userRealName != null and userRealName !=''">
 				userRealName=#{userRealName},
 			</if>
-			<if test="delegationId= != null and delegationId= !=''">
-				delegationId=#{delegation}
-			</if>
+			
+				delegationId=#{delegation.delegationId}
+			
 			where userId = #{userId}
 		</set>
 	</update>
 
 	<!-- 删除用户 -->
-	<delete id="deleteById" >
-		delete from user where userId = #{userId}
+	<delete id="deleteById">
+		delete from user where userId =
+		#{userId}
 	</delete>
 
 	<!-- 通过id查找用户 -->
-	<select id="getById" resultType="User">
-		select * from user where userId
-		= #{userId}
+	<select id="getById" resultMap="userResult">
+		SELECT u.userId as
+		uId,userLoginName,telNum,photo,userRealName,d.delegationId as
+		dId,delegationName,delegationDes,s.staffId as sId,staffName
+		FROM USER u
+		LEFT JOIN delegation d ON u.delegationId=d.delegationId
+		LEFT JOIN user_staff us ON u.userId=us.userId
+		LEFT JOIN staff s ON s.staffId = us.staffId where u.userId = #{userId}
 	</select>
-	
+
 	<!-- 批量删除用户 -->
 	<delete id="deleteByIds">
 		delete from user where userId in
-		<foreach collection="collection" item="id" separator="," open="(" close=")">
+		<foreach collection="collection" item="id" separator=","
+			open="(" close=")">
 			#{id}
 		</foreach>
 	</delete>
-	
+
 
 </mapper>

@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/skin.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -49,49 +50,38 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/user/update" method="post">
+                                            <form action="${pageContext.request.contextPath}/emp/update.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">登录名：</td>
-                                                        <td width="25%"><input class="text" value="${user.userLoginName }" name="userLoginName"/></td>
-                                                        <input type="hidden" value="${user.userId }" name="userId"/>
+                                                        <td width="8%">员工名：</td>
+                                                        <td width="25%"><input class="text" value="${emp.empName }" name="empName"/></td>
+                                                        <input type="hidden" value="${emp.empId }" name="empId"/>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>电话号：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="telNum" value="${user.telNum}"/></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>选择图片：</td>
-                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="photo" value="${user.photo}"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>照片：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="photo" value="${emp.photo}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">姓名：</td>
-                                                        <td>
-                                                        	<td width="25%"><input type="text" class="text" placeholder="必填" name="userRealName" value="${user.userRealName}"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>电话号码：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="empTel" value="${emp.empTel}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>职位：</td>
-                                                        <td><input class="text" value="${user.staff.staffName } " name="staffName" /></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td>代表团：</td>
-                                                        <td><input class="text" value="${user.delegation.delegationName} " name="delegationName" /></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>部门：</td>
+                                                        <td width="25%">
+                                                        	<select id="deptSelect" name="dept.deptId">
+                                                        		<option>--请选择--</option>
+                                                        	</select>
+                                                        </td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
@@ -145,5 +135,21 @@
                 </td>           
             </tr>
         </table>
+       	<script type="text/javascript">
+       		$(function(){
+       			$.ajax({
+       				url:"${pageContext.request.contextPath}/dept/deptType.action",
+       				resultType:"json",
+       				success:function(result){
+       					for(var i=0;i<result.length;i++){
+       						var deptId = result[i].deptId;
+       						var deptName = result[i].deptName;
+       						$("#deptSelect").append("<option value='"+deptId+"'>"+deptName+"</option>");
+       						$("#deptSelect").val("${emp.dept.deptId}");
+       					}
+       				}
+       			});
+       		})
+       	</script>
     </body>
 </html>

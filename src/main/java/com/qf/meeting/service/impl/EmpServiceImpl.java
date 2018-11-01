@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.Emp;
 import com.qf.meeting.mapper.EmpMapper;
 import com.qf.meeting.service.EmpService;
 
 @Service
+@Transactional
 public class EmpServiceImpl implements EmpService{
 
 	@Autowired

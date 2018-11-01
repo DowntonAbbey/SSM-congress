@@ -12,10 +12,10 @@
 		$("#form1").submit();
 	}
 	function add() {
-		window.location.href = "${pageContext.request.contextPath}/page/user/add";
+		window.location.href = "${pageContext.request.contextPath}/page/user/add.action";
 	}
 	
-	function deleteByNewsIds() {        
+	function deleteByIds() {        
 		var chk_value = [];//定义一个数组        
 		//利用将name等于ids的多选按钮得到       
 		$("input[name='ids']:checked").each(function() {        
@@ -26,7 +26,7 @@
 			alert("你还没有选择任何内容！");        
 			}       
 		if (chk_value.length > 0) {           
-			location.href ="${pageContext.request.contextPath}/user/deleteByIds?idString=" + chk_value;        
+			location.href ="${pageContext.request.contextPath}/user/deleteByIds.action?idString=" + chk_value;        
 			}
 	}
 </script>
@@ -80,7 +80,7 @@
 								<div style="float: right">
 									<input type="button" onclick='add()'
 										class="btn" value="添加" /> &nbsp;&nbsp;&nbsp; <input
-										type="button" class="btn" onclick='deleteByNewsIds()' value="批量删除" />
+										type="button" class="btn" onclick='deleteByIds()' value="批量删除" />
 								</div>
 							</form> <datalist id="rolelist">
 							<option></option>
@@ -122,13 +122,15 @@
 												<tr align="center" class="d">
 													<td><input type="checkbox" value="${e.userId }" name="ids" /></td>
 													<td>${e.userLoginName}</td>
-													<td><a href="view.html">${e.telNum}</a></td>
+													<td>${e.telNum}</td>
 													<td>${e.photo}</td>
 													<td>${e.userRealName}</td>
-													<td>${e.staff.staffName}</td>
+													<td><c:forEach items="${e.staffs }" var ="s">
+													${s.staffName }
+													</c:forEach></td>
 													<td>${e.delegation.delegationName }</td>
-													<td><a href="${pageContext.request.contextPath}/user/updateById/${e.userId}">修改</a>&nbsp;&nbsp; <a
-														href="${pageContext.request.contextPath}/user/deleteById/${e.userId}" onclick="del()">删除</a></td>
+													<td><a href="${pageContext.request.contextPath}/user/updateById.action?userId=${e.userId}">修改</a>&nbsp;&nbsp; <a
+														href="${pageContext.request.contextPath}/user/deleteById.action?userId=${e.userId}" onclick="del()">删除</a></td>
 												</tr>
                                                 </c:forEach>
 											</table>

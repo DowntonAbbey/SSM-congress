@@ -43,7 +43,6 @@ public class TestEmpMapper extends AbstractDbutilsTestCase{
 	public void init() throws Exception{
 		backOneTable("emp");
 		insertTestData();
-		exEmp = new Emp(1, "head.jpg", "jack", "18408250060", 1);
 	}
 	
 	@Test
@@ -66,19 +65,7 @@ public class TestEmpMapper extends AbstractDbutilsTestCase{
 		Assert.assertEquals(exEmp.toString(), emp.toString());
 	}
 	
-	@Test
-	public void testAdd() {
-		Emp emp = new Emp(null, "head.jpg", "tom", "18408250060", 1);
-		int num = empMapper.add(emp);
-		Assert.assertEquals(1, num);
-	}
 	
-	@Test
-	public void testUpdate() {
-		Emp emp = new Emp(1, "head.jpg", "tom", "18408250060", 1);
-		int num = empMapper.update(emp);
-		Assert.assertEquals(1, num);
-	}
 	
 	@Test
 	public void testDeleteById() {

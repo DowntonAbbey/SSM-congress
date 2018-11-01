@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/skin.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">

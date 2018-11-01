@@ -1,6 +1,8 @@
 package com.qf.meeting.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class User implements Serializable{
@@ -8,7 +10,12 @@ public class User implements Serializable{
 	/**   
 	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)   
 	 */   
-	private static final long serialVersionUID = -5238360899448629315L;
+	private static final long serialVersionUID = 3842682791022216577L;
+
+	/**   
+	 * @Fields serialVersionUID : TODO(用一句话描述这个变量表示什么)   
+	 */   
+
 
 	private Integer userId;
 	
@@ -22,7 +29,9 @@ public class User implements Serializable{
 	
 	private String userRealName;
 	
-	private Integer delegationId;
+	private Delegation delegation;
+	
+	private List<Staff> staffs = new ArrayList<>();
 
 	public Integer getUserId() {
 		return userId;
@@ -72,23 +81,24 @@ public class User implements Serializable{
 		this.userRealName = userRealName;
 	}
 
-	public Integer getDelegationId() {
-		return delegationId;
+	public Delegation getDelegation() {
+		return delegation;
 	}
 
-	public void setDelegationId(Integer delegationId) {
-		this.delegationId = delegationId;
+	public void setDelegation(Delegation delegation) {
+		this.delegation = delegation;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", userLoginName=" + userLoginName + ", telNum=" + telNum + ", password="
-				+ password + ", photo=" + photo + ", userRealName=" + userRealName + ", delegationId=" + delegationId
-				+ "]";
+	public List<Staff> getStaffs() {
+		return staffs;
+	}
+
+	public void setStaffs(List<Staff> staffs) {
+		this.staffs = staffs;
 	}
 
 	public User(Integer userId, String userLoginName, String telNum, String password, String photo, String userRealName,
-			Integer delegationId) {
+			Delegation delegation, List<Staff> staffs) {
 		super();
 		this.userId = userId;
 		this.userLoginName = userLoginName;
@@ -96,12 +106,24 @@ public class User implements Serializable{
 		this.password = password;
 		this.photo = photo;
 		this.userRealName = userRealName;
-		this.delegationId = delegationId;
+		this.delegation = delegation;
+		this.staffs = staffs;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userLoginName=" + userLoginName + ", telNum=" + telNum + ", password="
+				+ password + ", photo=" + photo + ", userRealName=" + userRealName + ", delegation=" + delegation
+				+ ", staffs=" + staffs + "]";
 	}
 
 	public User() {
 		super();
 	}
+
+	
 	
 	
 	

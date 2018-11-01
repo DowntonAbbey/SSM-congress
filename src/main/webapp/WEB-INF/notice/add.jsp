@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/skin.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -15,7 +16,7 @@
                 </td>
                 <td valign="top" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
                     <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
-                        <tr><td height="31"><div class="title">新闻添加</div></td></tr>
+                        <tr><td height="31"><div class="title">部门添加</div></td></tr>
                     </table>
                 </td>
                 <td width="16" valign="top" background="${pageContext.request.contextPath}/static/Images/mail_right_bg.gif"><img src="${pageContext.request.contextPath}/static/Images/nav_right_bg.gif" width="16" height="29" /></td>
@@ -47,51 +48,27 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/news/add" method="post">
+                                            <form action="${pageContext.request.contextPath}/dept/add.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>新闻标题：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="newsTitle"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>部门名：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="deptName"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>新闻描述：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="newsDes"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>部门描述：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="deptDes"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
-													<tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>新闻细节：</td>
-                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="newsDetail"/></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td><font color="red"><b>*</b></font>新闻类型：</td>
-                                                        <td><input type="radio" value="0"  name="type" checked/>文字<input type="radio" name="type" value="1" />图片</td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td><font color="red"><b>*</b></font>图片地址</td>
-                                                        <td>
-                                                        	<input class="text"  name="photo"/>
-                                                        </td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                   
                                                     <tr>
                                                         <td>&nbsp;</td>
                                                         <td colspan="2" align="center">
 															<input class="btn"  type="submit" value="提交" />&nbsp;&nbsp;&nbsp;
-															<input class="btn" onclick="location.href='${pageContext.request.contextPath}/user/list'" type="button" value="返回" />
+															<input class="btn" onclick="location.href='${pageContext.request.contextPath}/dept/list.action'" type="button" value="返回" />
 														</td>
                                                         <td></td>
                                                         <td>&nbsp;</td>

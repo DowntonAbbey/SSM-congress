@@ -17,7 +17,7 @@ public class Emp implements Serializable{
     
     private String empTel;    //员工的电话
     
-    private Integer deptId;    //部门的id
+    private Dept dept;//部门的id
 
 	public Integer getEmpId() {
 		return empId;
@@ -51,33 +51,32 @@ public class Emp implements Serializable{
 		this.empTel = empTel;
 	}
 
-	public Integer getDeptId() {
-		return deptId;
+	public Dept getDept() {
+		return dept;
 	}
 
-	public void setDeptId(Integer deptId) {
-		this.deptId = deptId;
+	public void setDept(Dept dept) {
+		this.dept = dept;
 	}
 
-	public Emp(Integer empId, String photo, String empName, String empTel, Integer deptId) {
+	@Override
+	public String toString() {
+		return "Emp [empId=" + empId + ", photo=" + photo + ", empName=" + empName + ", empTel=" + empTel + ", dept="
+				+ dept + "]";
+	}
+
+	public Emp(Integer empId, String photo, String empName, String empTel, Dept dept) {
 		super();
 		this.empId = empId;
 		this.photo = photo;
 		this.empName = empName;
 		this.empTel = empTel;
-		this.deptId = deptId;
+		this.dept = dept;
 	}
 
 	public Emp() {
 		super();
 	}
 
-	@Override
-	public String toString() {
-		return "Emp [empId=" + empId + ", photo=" + photo + ", empName=" + empName + ", empTel=" + empTel + ", deptId="
-				+ deptId + "]";
-	}
-    
-    
-
+	
 }

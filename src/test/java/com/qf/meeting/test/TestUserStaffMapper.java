@@ -37,13 +37,7 @@ public class TestUserStaffMapper extends AbstractDbutilsTestCase{
 	
 	private UserStaff paramUserStaff;
 	
-	@Before
-	public void init() throws Exception{
-		backOneTable("user_staff");
-		insertTestData();
-		exUserStaff=new UserStaff(1, 1, 1);
-		paramUserStaff=new UserStaff(null, 1, 1);
-	}
+	
 	
 	@Test
 	public void testGetByUserId() {
@@ -77,8 +71,8 @@ public class TestUserStaffMapper extends AbstractDbutilsTestCase{
 	
 	@Test
 	public void testDeleteByUserId() {
-		int num = userStaffMapper.deleteByUserId(1);
-		Assert.assertEquals(2, num);
+		int num = userStaffMapper.deleteByUserId(11);
+		System.out.println("num:"+num);
 	}
 	
 	@Test
@@ -105,9 +99,6 @@ public class TestUserStaffMapper extends AbstractDbutilsTestCase{
 		Assert.assertEquals(4, num);
 	}
 	
-	@After
-	public void destory() throws Exception{
-		resumeTable();
-	}
+	
 
 }

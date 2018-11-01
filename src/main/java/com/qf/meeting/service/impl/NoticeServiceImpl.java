@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.Notice;
 import com.qf.meeting.mapper.NoticeMapper;
 import com.qf.meeting.service.NoticeService;
 
 @Service
+@Transactional
 public class NoticeServiceImpl implements NoticeService{
 
 	@Autowired

@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.Delegation;
 import com.qf.meeting.mapper.DelegationMapper;
 import com.qf.meeting.service.DelegationService;
 
 @Service
+@Transactional
 public class DelegationServiceImpl implements DelegationService{
 
 	@Autowired

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qf.meeting.bean.Dept;
 import com.qf.meeting.service.DeptService;
@@ -82,5 +83,12 @@ public class DeptController {
 			response.getWriter().write("<script>alert('delete failed');location.href='"
 					+ request.getServletContext().getContextPath() + "/dept/list.action';</script>");
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/dept/deptType")
+	public List<Dept> getType(){
+		List<Dept> list = deptService.getList();
+		return list;
 	}
 }

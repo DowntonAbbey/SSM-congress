@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/skin.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -15,7 +16,7 @@
                 </td>
                 <td valign="top" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
                     <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
-                        <tr><td height="31"><div class="title">用户添加</div></td></tr>
+                        <tr><td height="31"><div class="title">部门添加</div></td></tr>
                     </table>
                 </td>
                 <td width="16" valign="top" background="${pageContext.request.contextPath}/static/Images/mail_right_bg.gif"><img src="${pageContext.request.contextPath}/static/Images/nav_right_bg.gif" width="16" height="29" /></td>
@@ -47,61 +48,45 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/user/add" method="post">
+                                            <form action="${pageContext.request.contextPath}/emp/add.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>登录名：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="userLoginName"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>员工名：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="empName"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>电话号码：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="telNum"/></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>选择照片：</td>
-                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="photo"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>员工电话：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="empTel"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>姓名：</td>
-                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="userRealName"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>部门名：</td>
+                                                        <td width="25%">
+                                                        	<select id="deptSelect" name="dept.deptId">
+                                                        		<option>--请选择--</option>
+                                                        	</select>
+                                                        </td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td><font color="red"><b>*</b></font>职位</td>
-                                                        <td>
-                                                        	<input class="text"  name="staff"/>
-                                                        </td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>照片：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="photo"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
-                                                    
-                                                     <tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td><font color="red"><b>*</b></font>代表团</td>
-                                                        <td>
-                                                        	<input class="text"  name="deletgaion"/>
-                                                        </td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-                                                   
                                                     <tr>
                                                         <td>&nbsp;</td>
                                                         <td colspan="2" align="center">
 															<input class="btn"  type="submit" value="提交" />&nbsp;&nbsp;&nbsp;
-															<input class="btn" onclick="location.href='${pageContext.request.contextPath}/user/list'" type="button" value="返回" />
+															<input class="btn" onclick="location.href='${pageContext.request.contextPath}/emp/list.action'" type="button" value="返回" />
 														</td>
                                                         <td></td>
                                                         <td>&nbsp;</td>
@@ -148,5 +133,20 @@
                 </td>           
             </tr>
         </table>
+        <script type="text/javascript">
+        	$(function(){
+        		$.ajax({
+        			url:"${pageContext.request.contextPath}/dept/deptType.action",
+        			resultType:"json",
+        			success:function(result){
+        				for(var i=0;i<result.length;i++){
+        					var deptId = result[i].deptId;
+        					var deptName = result[i].deptName;
+        					$("#deptSelect").append("<option value='"+deptId+"'>"+deptName+"</option>");
+        				}
+        			}
+        		});
+        	})
+        </script>
     </body>
 </html>

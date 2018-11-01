@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.Resource;
 import com.qf.meeting.mapper.ResourceMapper;
 import com.qf.meeting.service.ResourceService;
 
 @Service
+@Transactional
 public class ResourceServiceImpl implements ResourceService{
 
 	@Autowired

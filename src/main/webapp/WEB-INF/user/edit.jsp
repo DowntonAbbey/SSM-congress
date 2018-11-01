@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/skin.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -49,7 +52,7 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/user/update" method="post">
+                                            <form action="${pageContext.request.contextPath}/user/update.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
@@ -76,22 +79,28 @@
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td width="8%">姓名：</td>
-                                                        <td>
-                                                        	<td width="25%"><input type="text" class="text" placeholder="必填" name="userRealName" value="${user.userRealName}"/></td>
+                                                        
+                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="userRealName" value="${user.userRealName}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td>职位：</td>
-                                                        <td><input class="text" value="${user.staff.staffName } " name="staffName" /></td>
+                                                        <td>
+                                                        <select name="staffParam" id="staffSelect">
+                                                        	<option>--请选择职位--</option>
+                                                        </select></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td>代表团：</td>
-                                                        <td><input class="text" value="${user.delegation.delegationName} " name="delegationName" /></td>
+                                                        <td><select id="delegationSelect" name="delegation.delegationId">
+                                                        	<option>--请选择代表团--</option>
+                                                        </select>
+                                                        </td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
@@ -145,5 +154,35 @@
                 </td>           
             </tr>
         </table>
+        
+        <script type="text/javascript">
+		$(function(){
+			$.ajax({
+				url:"${pageContext.request.contextPath}/staff/staffType.action",
+				dataType:"json",
+				success:function(result){
+					for(var i=0;i<result.length;i++){
+						  var staffId=result[i].staffId;
+						  var staffName=result[i].staffName;
+						  $("#staffSelect").append("<option value='"+staffId+"'>"+staffName+"</option>");
+						  $("#staffSelect").val("${user.staffs[0].staffId}");
+					  }
+				}
+			});
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/delegation/delegationType.action",
+				dataType:"json",
+				success:function(result){
+					for(var i=0;i<result.length;i++){
+						  var delegationId=result[i].delegationId;
+						  var delegationName=result[i].delegationName;
+						  $("#delegationSelect").append("<option value='"+delegationId+"'>"+delegationName+"</option>");
+						  $("#delegationSelect").val("${user.delegation.delegationId}");
+					  }
+				}
+			});
+		})
+	</script>
     </body>
 </html>

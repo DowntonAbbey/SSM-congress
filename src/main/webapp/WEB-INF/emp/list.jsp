@@ -8,11 +8,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 <script type="text/javascript">
 	function goPage(pageIndex){
-		$("#form1").attr("action","${pageContext.request.contextPath}/user/list");
+		$("#form1").attr("action","${pageContext.request.contextPath}/emp/list");
 		$("#form1").submit();
 	}
 	function add() {
-		window.location.href = "${pageContext.request.contextPath}/page/user/add";
+		window.location.href = "${pageContext.request.contextPath}/page/emp/add.action";
 	}
 	
 	function deleteByNewsIds() {        
@@ -26,7 +26,7 @@
 			alert("你还没有选择任何内容！");        
 			}       
 		if (chk_value.length > 0) {           
-			location.href ="${pageContext.request.contextPath}/user/deleteByIds?idString=" + chk_value;        
+			location.href ="${pageContext.request.contextPath}/emp/deleteByIds.action?idString=" + chk_value;        
 			}
 	}
 </script>
@@ -42,7 +42,7 @@
 				<table width="100%" height="31" border="0" cellpadding="0"
 					cellspacing="0" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
 					<tr>
-						<td height="31"><div class="title">用户管理</div></td>
+						<td height="31"><div class="title">员工管理</div></td>
 					</tr>
 				</table>
 			</td>
@@ -68,7 +68,7 @@
 							<form class="clearfix" action="${pageContext.request.contextPath}/emp/list/1" id="form1" method="post">
 								<div style="float: left">
 									<p style="float: left; margin-left: 30px;">
-										<label>用户名：</label>
+										<label>部门名：</label>
 										<input class="text" list="rolelist" name="name" value="${p.bean}" style="width: 80px;" />
 									</p>
 									&nbsp;&nbsp;&nbsp;
@@ -110,25 +110,21 @@
 											<table width="100%" class="cont tr_color">
 												<tr>
 													<th><input type="checkbox" value="" /></th>
-													<th>登录名</th>
-													<th>手机号码</th>
+													<th>员工名</th>
 													<th>照片</th>
-													<th>姓名</th>
-													<th>职位</th>
-													<th>代表团</th>
-													<th>操作</th>
+													<th>员工电话</th>
+													<th>部门名</th>
 												</tr>
-											<c:forEach items="${users}" var="e">
+											<c:forEach items="${emps}" var="e">
 												<tr align="center" class="d">
-													<td><input type="checkbox" value="${e.userId }" name="ids" /></td>
-													<td>${e.userLoginName}</td>
-													<td><a href="view.html">${e.telNum}</a></td>
+													<td><input type="checkbox" value="${e.empId }" name="ids" /></td>
+													<td>${e.empName}</td>
 													<td>${e.photo}</td>
-													<td>${e.userRealName}</td>
-													<td>${e.staff.staffName}</td>
-													<td>${e.delegation.delegationName }</td>
-													<td><a href="${pageContext.request.contextPath}/user/updateById/${e.userId}">修改</a>&nbsp;&nbsp; <a
-														href="${pageContext.request.contextPath}/user/deleteById/${e.userId}" onclick="del()">删除</a></td>
+													<td>${e.empTel}</td>
+													<td>${e.dept.deptName}</td>
+													<td><a href="${pageContext.request.contextPath}/emp/updateById.action?empId=${e.empId}">修改</a>&nbsp;&nbsp; <a
+														href="${pageContext.request.contextPath}/emp/deleteById.action?empId=${e.empId}" onclick="del()">删除</a>
+													</td>
 												</tr>
                                                 </c:forEach>
 											</table>

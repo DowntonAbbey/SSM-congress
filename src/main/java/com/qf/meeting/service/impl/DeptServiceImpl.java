@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.Dept;
 import com.qf.meeting.mapper.DeptMapper;
 import com.qf.meeting.service.DeptService;
 
 @Service
+@Transactional
 public class DeptServiceImpl implements DeptService{
 
 	@Autowired

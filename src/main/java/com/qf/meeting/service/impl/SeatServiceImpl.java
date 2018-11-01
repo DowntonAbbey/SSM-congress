@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.Seat;
 import com.qf.meeting.mapper.SeatMapper;
 import com.qf.meeting.service.SeatService;
 
 @Service
+@Transactional
 public class SeatServiceImpl implements SeatService{
 
 	@Autowired

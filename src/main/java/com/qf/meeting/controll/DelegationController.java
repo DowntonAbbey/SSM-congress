@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qf.meeting.bean.Delegation;
 import com.qf.meeting.service.DelegationService;
@@ -83,5 +84,11 @@ public class DelegationController {
 			response.getWriter().write("<script>alert('delete failed');location.href='"
 					+ request.getServletContext().getContextPath() + "/delegation/list.action';</script>");
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/delegation/delegationType")
+	public List<Delegation> getList(){
+		return delegationService.getList();
 	}
 }

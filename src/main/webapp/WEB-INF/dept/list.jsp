@@ -42,7 +42,7 @@
 				<table width="100%" height="31" border="0" cellpadding="0"
 					cellspacing="0" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
 					<tr>
-						<td height="31"><div class="title">代表团管理</div></td>
+						<td height="31"><div class="title">部门管理</div></td>
 					</tr>
 				</table>
 			</td>
