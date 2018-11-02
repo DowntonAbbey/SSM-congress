@@ -38,13 +38,7 @@ public class TestAgendaMapper extends AbstractDbutilsTestCase{
 	
 	private Agenda parmAgenda;
 	
-	@Before
-	public void init() throws Exception {
-		backOneTable("agenda");
-		insertTestData();
-		exAgenda = new Agenda(1, "通知名", "2018-1-1", "通知地址", "议程细节", 1);
-		parmAgenda = new Agenda(1, "通知名", "2018-1-1", "通知地址", "议程细节", 1);
-	}
+	
 	
 	@Test
 	public void testGetList() {
@@ -113,10 +107,6 @@ public class TestAgendaMapper extends AbstractDbutilsTestCase{
 		
 	}
 
-	@After
-	public void destory() throws Exception {
-		resumeTable();
-	}
 	
 	
 

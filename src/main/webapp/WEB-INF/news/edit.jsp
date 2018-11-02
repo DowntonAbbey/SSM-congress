@@ -49,7 +49,7 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/news/update.action" method="post">
+                                            <form action="${pageContext.request.contextPath}/news/update.action" method="post" enctype="multipart/form-data">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
@@ -85,7 +85,7 @@
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
                                                         <td>照片地址：</td>
-                                                        <td><input class="text" value="${news.photo } " name="photo" /></td>
+                                                        <td><input type="file" name="file" value="${news.photo }"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>

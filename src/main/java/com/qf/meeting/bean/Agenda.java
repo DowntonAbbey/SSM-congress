@@ -98,7 +98,6 @@ public class Agenda implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	
 	
 }

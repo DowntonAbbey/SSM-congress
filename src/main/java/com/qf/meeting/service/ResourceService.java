@@ -13,6 +13,8 @@ public interface ResourceService {
 	public List<Resource> getByNoticeIds(List<Integer> noticeIds);
 
 	public Resource getById(Integer resourceId);
+	
+	public Resource getByNoticeId(Integer noticeId);
 
 	public int add(Resource resource);
 

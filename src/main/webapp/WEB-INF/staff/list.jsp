@@ -8,7 +8,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 <script type="text/javascript">
 	function goPage(pageIndex){
-		$("#form1").attr("action","${pageContext.request.contextPath}/staff/list");
+		$("#form1").attr("action","${pageContext.request.contextPath}/staff/list.action?pageIndex="+pageIndex);
 		$("#form1").submit();
 	}
 	function add() {
@@ -145,7 +145,9 @@
                                 <input type="button" value="反选" />
                             <div style="float:right;"><b>
                                 <a href="#" onclick="goPage(1);">首页</a>&nbsp;&nbsp;&nbsp;
-								<a href="#" onclick="goPage(${p.pageIndex-1});">上一页</a>&nbsp;&nbsp;&nbsp;
+                                <c:if test="${p.pageIndex-1 > 0}">
+									<a href="#" onclick="goPage(${p.pageIndex-1});">上一页</a>&nbsp;&nbsp;&nbsp;
+								</c:if>
 								<c:forEach begin="${p.startNum}" end="${p.endNum}" step="1" var="num">
 									      <c:if test="${num==p.pageIndex}">
 									          <span style="color: red;">${num}</span>&nbsp;&nbsp;&nbsp;
@@ -154,7 +156,9 @@
 									         <a href="#" onclick="goPage(${num});">${num}</a>&nbsp;&nbsp;&nbsp;
 									      </c:if>
 									</c:forEach>
-								<a href="#" onclick="goPage(${p.pageIndex+1});">下一页</a>&nbsp;&nbsp;&nbsp;
+								<c:if test="${p.pageIndex-1 < pageCount}">
+									<a href="#" onclick="goPage(${p.pageIndex+1});">下一页</a>&nbsp;&nbsp;&nbsp;
+								</c:if>
 								<a href="#" onclick="goPage(${p.pageCount});">末页</a>&nbsp;&nbsp;&nbsp;
 								每页显示${p.pageSize}条&nbsp;&nbsp;&nbsp;
 								当前 ${p.pageIndex}/${p.pageCount}页&nbsp;&nbsp;&nbsp;

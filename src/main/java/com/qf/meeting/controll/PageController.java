@@ -51,6 +51,17 @@ public class PageController {
 		return "staff/"+page;
 	}
 	
+	@RequestMapping("/page/agenda/{page}")
+	public String agendaZhuan(@PathVariable(value="page") String page) {
+		return "agenda/"+page;
+	}
+	
+	@RequestMapping("/page/resource/{page}")
+	public String resourceZhuan(@PathVariable(value="page") String page) {
+		return "resource/"+page;
+	}
+
+	
 	@RequestMapping("/page/user/{page}")
 	public String userZhuan(@PathVariable(value="page") String page) {
 		return "user/"+page;

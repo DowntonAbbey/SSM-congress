@@ -4,7 +4,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/skin.css" />
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/themes/default/easyui.css" />
+	<!--导入js的文件-->
+	<script src="${pageContext.request.contextPath}/static/Js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/static/Js/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -49,43 +53,34 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/news/update" method="post">
+                                            <form action="${pageContext.request.contextPath}/seat/update.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">新闻标题：</td>
-                                                        <td width="25%"><input class="text" value="${news.newsTitle }" name="newsTitle"/></td>
-                                                        <input type="hidden" value="${news.newsId }" name="newsId"/>
+                                                        <td width="8%">座次安排标题：</td>
+                                                        <td width="25%"><input class="text" value="${seat.noticeName }" name="seatName"/></td>
+                                                        <input type="hidden" value="${seat.seatId}" name="seatId"/>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>新闻描述：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="newsDes" value="${news.newsDes}"/></td>
-                                                        <td></td>
-                                                        <td width="2%">&nbsp;</td>
-                                                    </tr>
-													<tr>
-                                                        <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>新闻细节：</td>
-                                                        <td width="25%"><input type="text" class="text" placeholder="必填" name="newsDetail" value="${news.newsDetail }"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>座次安排通知地址：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="noticeAddress" value="${seat.noticeAddress}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>新闻类型：</td>
-                                                        <td>
-                                                        	<input  type="radio" name="type" ${news.type eq '0'?'checked':'' } value='0'/>文本
-				                                            <input  type="radio" name="type" ${news.type eq '1'?'checked':'' } value='1'/>照片</td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>座次编号：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="seatNum" value="${seat.seatNum}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td>照片地址：</td>
-                                                        <td><input class="text" value="${news.photo } " name="photo" /></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>座次安排通知时间：</td>
+                                                        <td width="25%"><input type="text" id="dd" name="noticeTime"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
@@ -139,5 +134,24 @@
                 </td>           
             </tr>
         </table>
+        <script type="text/javascript">
+	
+		$(document).ready(function() {
+			$.fn.datebox.defaults.formatter = function(date) {
+				var y = date.getFullYear();
+				var m = date.getMonth() + 1;
+				var d = date.getDate();
+				return y + '-' + m + '-' + d;
+			}
+			$("#dd").datetimebox({
+				required: true,
+				value: '${seat.noticeTime}',
+				currentText: "今天",
+				closeText: "关闭"
+			});
+			
+			
+		})
+	</script>
     </body>
 </html>

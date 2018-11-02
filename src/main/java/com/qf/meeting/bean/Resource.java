@@ -59,6 +59,12 @@ public class Resource implements Serializable{
 		this.noticeId = noticeId;
 	}
 
+	@Override
+	public String toString() {
+		return "Resource [resourceId=" + resourceId + ", noticeName=" + noticeName + ", noticeAddress=" + noticeAddress
+				+ ", resourceDetail=" + resourceDetail + ", noticeId=" + noticeId + "]";
+	}
+
 	public Resource(Integer resourceId, String noticeName, String noticeAddress, String resourceDetail,
 			Integer noticeId) {
 		super();
@@ -71,14 +77,8 @@ public class Resource implements Serializable{
 
 	public Resource() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public String toString() {
-		return "Resource [resourceId=" + resourceId + ", noticeName=" + noticeName + ", noticeAddress=" + noticeAddress
-				+ ", resourceDetail=" + resourceDetail + ", noticeId=" + noticeId + "]";
-	}
+	
 	
 	
 }

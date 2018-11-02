@@ -7,16 +7,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.junit.runners.Parameterized.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.qf.meeting.bean.News;
 import com.qf.meeting.service.NewsService;
+import com.qf.meeting.utils.CommonUtils;
+import com.qf.meeting.utils.Pager;
 
 @Controller
 public class NewsController {
@@ -26,15 +27,28 @@ public class NewsController {
 	
 	
 	@RequestMapping("/news/list")
-	public String getList(Model model) {
+	public String getList(Model model, Integer pageIndex) {
+		
+		Integer pageSize = 5; // 页面大小
+		// 使用分页插件 调用查询方法之前用插件
+		Page<?> page = PageHelper.startPage(pageIndex, pageSize); // 插件
+		
 		List<News> list = newsService.getList();
 		model.addAttribute("list", list);
+		
+		Integer totalCount = Integer.parseInt(page.getTotal() + ""); // 数目
+		int pageCont = page.getPages(); // 总页数
+		// 封装数据
+		Pager<News, String> p = new Pager<News, String>(pageIndex, totalCount, pageSize, pageCont,list, null);
+		model.addAttribute("p", p);
 		return "news/list";
 	}
 	
 
 	@RequestMapping("/news/add")
-	public String add(Model model,News news) {
+	public String add(Model model,News news,HttpServletRequest request) {
+		String fileName = CommonUtils.fileUpload(request);
+		news.setPhoto(fileName);
 		int result = newsService.add(news);
 		if(result>0) {
 			return "forward:/news/list.action";
@@ -52,6 +66,8 @@ public class NewsController {
 	
 	@RequestMapping("/news/update")
 	public void updateById(Model model,News news,HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String fileName = CommonUtils.fileUpload(request);
+		news.setPhoto(fileName);
 		int result = newsService.update(news);
 		if(result>0) {
 			response.getWriter().write("<script>alert('update success');location.href='"+request.getServletContext().getContextPath()+"/news/list.action'</script>");

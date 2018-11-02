@@ -8,16 +8,11 @@
 <title></title>
 
 <!--导入样式文件-->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/static/Style/themes/icon.css" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/static/Style/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/themes/default/easyui.css" />
 <!--导入js的文件-->
-<script src="${pageContext.request.contextPath}/static/Js/jquery.min.js"
-	type="text/javascript" charset="utf-8"></script>
-<script
-	src="${pageContext.request.contextPath}/static/Js/jquery.easyui.min.js"
-	type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/static/Js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${pageContext.request.contextPath}/static/Js/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 
@@ -27,32 +22,35 @@
 		<div class="easyui-layout" data-options="fit:true">
 			<div data-options="region:'west'" style="width: 180px">
 				<!--编写我们的菜单-->
-				<a id="btn" href="#" onclick="addTable('用户管理','/user/list.action')"
+				<a id="btn" href="#" onclick="addTable('用户管理','/user/list.action?pageIndex=1')"
 					class="easyui-linkbutton" data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">用&nbsp;&nbsp;户&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br />
-				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('职位管理','staff/list.action')"
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('职位管理','staff/list.action?pageIndex=1')"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">职&nbsp;&nbsp;位&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br /> 
-				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('代表团管理','delegation/list.action')"
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('代表团管理','delegation/list.action?pageIndex=1')"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">代&nbsp;表&nbsp;团&nbsp;管&nbsp;理</a><br /> 
-				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('员工管理','emp/list.action')"
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('员工管理','emp/list.action?pageIndex=1')"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">员&nbsp;&nbsp;工&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br />
-				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('部门管理','dept/list.action')"
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('部门管理','dept/list.action?pageIndex=1')"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">部&nbsp;&nbsp;门&nbsp;&nbsp;管&nbsp;&nbsp;理</a><br />
-				<a id="btn" href="#" onclick="addTable('会议新闻管理','news/list.action')" class="easyui-linkbutton"
+				<a id="btn" href="#" onclick="addTable('会议新闻管理','news/list.action?pageIndex=1')" class="easyui-linkbutton"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">会议新闻管理</a><br /> 
-				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('会议通知管理','/notice/list.action')"
+				<a id="btn" href="#" class="easyui-linkbutton" onclick="addTable('会议通知管理','notice/list.action?pageIndex=1')"
 					data-options="iconCls:'icon-edit'"
 					style="margin-top: 10px; width: 170px;">会议通知管理</a><br /> 
 				<a id="btn" href="#" class="easyui-linkbutton"
-					data-options="iconCls:'icon-edit'" onclick="addTable('会议议程管理','agenda/list.action')"
+					data-options="iconCls:'icon-edit'" onclick="addTable('会议议程管理','agenda/list.action?pageIndex=1')"
 					style="margin-top: 10px; width: 170px;">会议议程管理</a><br /> 
 				<a id="btn" href="#" class="easyui-linkbutton"
-					data-options="iconCls:'icon-edit'" onclick="addTable('座次安排管理','seat/list.action')"
+					data-options="iconCls:'icon-edit'" onclick="addTable('会议资料管理','resource/list.action?pageIndex=1')"
+					style="margin-top: 10px; width: 170px;">会议资料管理</a><br /> 
+				<a id="btn" href="#" class="easyui-linkbutton"
+					data-options="iconCls:'icon-edit'" onclick="addTable('座次安排管理','seat/list.action?pageIndex=1')"
 					style="margin-top: 10px; width: 170px;">座次安排管理</a><br />
 			</div>
 			<div data-options="region:'center'">

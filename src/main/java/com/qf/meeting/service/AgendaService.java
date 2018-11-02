@@ -13,6 +13,8 @@ public interface AgendaService {
 	public List<Agenda> getByNoticeIds(List<Integer> noticeIds);
 
 	public Agenda getById(Integer agendaId);
+	
+	public Agenda getByNoticeId(Integer noticeId);
 
 	public int add(Agenda agenda);
 

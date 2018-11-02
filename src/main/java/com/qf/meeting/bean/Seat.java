@@ -69,27 +69,18 @@ public class Seat implements Serializable{
 		this.noticeId = noticeId;
 	}
 
-	public Seat() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Seat(Integer seatId, String noticeName, String noticeTime, String noticeAddress, String seatNum,
-			Integer noticeId) {
-		super();
-		this.seatId = seatId;
-		this.noticeName = noticeName;
-		this.noticeTime = noticeTime;
-		this.noticeAddress = noticeAddress;
-		this.seatNum = seatNum;
-		this.noticeId = noticeId;
-	}
-
 	@Override
 	public String toString() {
 		return "Seat [seatId=" + seatId + ", noticeName=" + noticeName + ", noticeTime=" + noticeTime
 				+ ", noticeAddress=" + noticeAddress + ", seatNum=" + seatNum + ", noticeId=" + noticeId + "]";
 	}
+
+	public Seat() {
+		super();
+	}
+
+	
+
 	
 	
 }

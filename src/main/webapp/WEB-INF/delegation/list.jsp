@@ -8,7 +8,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 <script type="text/javascript">
 	function goPage(pageIndex){
-		$("#form1").attr("action","${pageContext.request.contextPath}/delegation/list");
+		$("#form1").attr("action","${pageContext.request.contextPath}/delegation/list.action?pageIndex="+pageIndex);
 		$("#form1").submit();
 	}
 	function add() {

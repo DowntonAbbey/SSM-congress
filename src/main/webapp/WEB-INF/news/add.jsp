@@ -47,7 +47,7 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/news/add.action" method="post">
+                                            <form action="${pageContext.request.contextPath}/news/add.action" method="post" enctype="multipart/form-data">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
@@ -81,7 +81,7 @@
                                                         <td width="2%">&nbsp;</td>
                                                         <td><font color="red"><b>*</b></font>图片地址</td>
                                                         <td>
-                                                        	<input class="text"  name="photo"/>
+                                                        	<input type="file" name="file">
                                                         </td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>

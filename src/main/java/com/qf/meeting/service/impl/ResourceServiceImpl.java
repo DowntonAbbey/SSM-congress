@@ -61,4 +61,10 @@ public class ResourceServiceImpl implements ResourceService{
 	public int deleteByNoticeIds(List<Integer> noticeIds) {
 		return resourceMapper.deleteByNoticeIds(noticeIds);
 	}
+
+	@Override
+	public Resource getByNoticeId(Integer noticeId) {
+		// TODO Auto-generated method stub
+		return resourceMapper.getByNoticeId(noticeId);
+	}
 }

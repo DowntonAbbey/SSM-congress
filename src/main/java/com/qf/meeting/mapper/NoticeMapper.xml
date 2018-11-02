@@ -19,7 +19,7 @@
   	</select>
   	
   	<insert id="add" parameterType="Notice">
-  		insert into notice values(null,#{noticeTime},#{noticeTime},#{noticeAddress})
+  		insert into notice values(null,#{noticeTime},#{noticeTitle},#{noticeAddress})
   	</insert>
   	
   	<update id="update" parameterType="Notice">

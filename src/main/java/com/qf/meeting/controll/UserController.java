@@ -12,13 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.qf.meeting.bean.User;
 import com.qf.meeting.bean.UserArgs;
 import com.qf.meeting.bean.UserStaff;
-import com.qf.meeting.mapper.UserStaffMapper;
-import com.qf.meeting.bean.User;
 import com.qf.meeting.service.UserService;
 import com.qf.meeting.service.UserStaffService;
+import com.qf.meeting.utils.CommonUtils;
+import com.qf.meeting.utils.Pager;
 
 @Controller
 public class UserController {
@@ -28,13 +30,22 @@ public class UserController {
 
 	@Autowired
 	private UserStaffService userStaffService;
-	
 
 	@RequestMapping("/user/list")
-	public String getList(Model model) {
-
+	public String getList(Model model,Integer pageIndex) {
+		Integer pageSize = 5; // 页面大小
+		// 使用分页插件 调用查询方法之前用插件
+		Page<?> page = PageHelper.startPage(pageIndex, pageSize); // 插件
+		
 		List<User> list = userService.getList();
 		model.addAttribute("users", list);
+		
+		Integer totalCount = Integer.parseInt(page.getTotal() + ""); // 数目
+		int pageCont = page.getPages(); // 总页数
+		// 封装数据
+		Pager<User, String> p = new Pager<User, String>(pageIndex, totalCount, pageSize, pageCont,list, null);
+		model.addAttribute("p", p);
+		
 		return "user/list";
 	}
 
@@ -46,8 +57,11 @@ public class UserController {
 	}
 
 	@RequestMapping("user/add")
-	public String add(Model model, UserArgs userArgs) {
+	public String add(Model model, UserArgs userArgs,HttpServletRequest request)  {
 		User user = userArgs;
+		//文件上传
+		String photo = CommonUtils.fileUpload(request);
+		user.setPhoto(photo);
 		int count = userService.add(user);
 		if (user.getUserId() > 0) {
 			UserStaff userStaff = new UserStaff(null, user.getUserId(), userArgs.getStaffParam());
@@ -60,13 +74,17 @@ public class UserController {
 		}
 	}
 
+	
+
 	@RequestMapping("user/update")
 	public void update(Model model, UserArgs userArgs, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		User user = userArgs;
+		String fileName = CommonUtils.fileUpload(request);
+		user.setPhoto(fileName);
 		UserStaff userStaff = new UserStaff(null, user.getUserId(), userArgs.getStaffParam());
 		Integer num = userStaffService.updateByUserId(userStaff);
-		if(num==0) {
+		if (num == 0) {
 			userStaffService.add(userStaff);
 		}
 		int count = userService.update(user);
@@ -111,6 +129,5 @@ public class UserController {
 					+ request.getServletContext().getContextPath() + "/user/list.action';</script>");
 		}
 	}
-	
-	
+
 }

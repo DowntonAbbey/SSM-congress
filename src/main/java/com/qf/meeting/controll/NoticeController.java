@@ -12,8 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.qf.meeting.bean.Notice;
 import com.qf.meeting.service.NoticeService;
+import com.qf.meeting.utils.Pager;
 
 @Controller
 public class NoticeController {
@@ -22,9 +25,19 @@ public class NoticeController {
 	private NoticeService noticeService;
 	
 	@RequestMapping("/notice/list")
-	public String getList(Model model) {
+	public String getList(Model model, Integer pageIndex) {
+		Integer pageSize = 5; // 页面大小
+		// 使用分页插件 调用查询方法之前用插件
+		Page<?> page = PageHelper.startPage(pageIndex, pageSize); // 插件
+		
 		List<Notice> list = noticeService.getList();
 		model.addAttribute("notices",list);
+		
+		Integer totalCount = Integer.parseInt(page.getTotal() + ""); // 数目
+		int pageCont = page.getPages(); // 总页数
+		// 封装数据
+		Pager<Notice, String> p = new Pager<Notice, String>(pageIndex, totalCount, pageSize, pageCont,list, null);
+		model.addAttribute("p", p);
 		return "notice/list";
 		
 	}

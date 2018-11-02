@@ -6,12 +6,16 @@ import com.qf.meeting.bean.Agenda;
 
 public interface AgendaMapper {
 
+	
+	
 	public List<Agenda> getList();
 
 	public List<Agenda> getByIds(List<Integer> ids);
 	
 	public List<Agenda> getByNoticeIds(List<Integer> noticeIds);
 
+	public Agenda getByNoticeId(Integer noticeId); 
+	
 	public Agenda getById(Integer agendaId);
 
 	public int add(Agenda agenda);
@@ -23,4 +27,5 @@ public interface AgendaMapper {
 	public int deleteByIds(List<Integer> ids);
 	
 	public int deleteByNoticeIds(List<Integer> noticeIds);
+	
 }

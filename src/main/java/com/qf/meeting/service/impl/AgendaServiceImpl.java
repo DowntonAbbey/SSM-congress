@@ -8,10 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.qf.meeting.bean.Agenda;
 import com.qf.meeting.mapper.AgendaMapper;
+import com.qf.meeting.service.AgendaService;
 
 @Service
 @Transactional
-public class AgendaServiceImpl implements AgendaMapper{
+public class AgendaServiceImpl implements AgendaService{
 
 	@Autowired
 	private AgendaMapper agendaMapper;
@@ -60,5 +61,13 @@ public class AgendaServiceImpl implements AgendaMapper{
 	public int deleteByNoticeIds(List<Integer> noticeIds) {
 		return agendaMapper.deleteByNoticeIds(noticeIds);
 	}
+
+	@Override
+	public Agenda getByNoticeId(Integer noticeId) {
+		// TODO Auto-generated method stub
+		return agendaMapper.getByNoticeId(noticeId);
+	}
+	
+	
 	
 }

@@ -68,8 +68,7 @@
 							<table width="100%">
 								<tr>
 									<td colspan="2">
-										<form action="${pageContext.request.contextPath}/user/add.action"
-											method="post">
+										<form action="${pageContext.request.contextPath}/user/add.action" method="post" enctype="multipart/form-data">
 											<table width="100%" class="cont">
 												<tr>
 													<td width="2%">&nbsp;</td>
@@ -90,8 +89,7 @@
 												<tr>
 													<td width="2%">&nbsp;</td>
 													<td width="8%"><font color="red"><b>*</b></font>选择照片：</td>
-													<td width="25%"><input type="text" class="text"
-														placeholder="必填" name="photo" /></td>
+													<td width="25%"><input type="file" name="file"></td>
 													<td></td>
 													<td width="2%">&nbsp;</td>
 												</tr>

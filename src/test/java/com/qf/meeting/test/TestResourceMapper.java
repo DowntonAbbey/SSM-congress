@@ -39,13 +39,7 @@ public class TestResourceMapper extends AbstractDbutilsTestCase{
 	
 	private Resource parmResource;
 	
-	@Before
-	public void init() throws Exception {
-		backOneTable("resource");
-		insertTestData();
-		exResource = new Resource(1, "通知名","通知地址", "资料详情", 1);
-		parmResource = new Resource(1, "通知名","通知地址", "资料详情", 1);
-	}
+	
 	
 	@Test
 	public void testGetList() {
@@ -112,10 +106,5 @@ public class TestResourceMapper extends AbstractDbutilsTestCase{
 		int num = resourceMapper.deleteByNoticeIds(ids);
 		Assert.assertEquals(2, num);
 		
-	}
-
-	@After
-	public void destory() throws Exception {
-		resumeTable();
 	}
 }

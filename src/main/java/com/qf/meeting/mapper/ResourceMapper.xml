@@ -25,6 +25,10 @@
   		select * from resource where resourceId = #{resourceId}
   	</select>
   	
+  	<select id="getByNoticeId" resultType="Resource">
+  		select * from resource where noticeId = #{noticeId}
+  	</select>
+  	
   	<insert id="add" parameterType="Resource">
   		insert into resource values(null,#{noticeName},#{noticeAddress},#{resourceDetail},#{noticeId})
   	</insert>
@@ -39,11 +43,11 @@
   				noticeAddress = #{noticeAddress},
   			</if>
   			<if test="resourceDetail != null and resourceDetail != ''">
-  				noticeAddress = #{noticeAddress},
+  				resourceDetail = #{resourceDetail},
   			</if> 
-  			<if test="noticeId != null and noticeId != ''">
-  				noticeAddress = #{noticeAddress},
-  			</if> 
+  			
+  				noticeId = #{noticeId},
+  			
   		</set>
   		where resourceId = #{resourceId}
   	</update>

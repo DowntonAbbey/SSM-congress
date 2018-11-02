@@ -25,6 +25,10 @@
   		select * from seat where seatId = #{seatId}
   	</select>
   	
+  	<select id="getByNoticeId" resultType="Seat">
+  		select * from seat where noticeId = #{noticeId}
+  	</select>
+  	
   	<insert id="add" parameterType="Seat">
   		insert into seat values(null,#{noticeName},#{noticeTime},#{noticeAddress},#{seatNum},#{noticeId})
   	</insert>
@@ -44,9 +48,7 @@
   			<if test="seatNum != null and seatNum != ''">
   				seatNum = #{seatNum},
   			</if> 
-  			<if test="noticeId != null and noticeId != ''">
-  				noticeAddress = #{noticeAddress},
-  			</if> 
+  				noticeId = #{noticeId},
   		</set>
   		where seatId = #{seatId}
   	</update>

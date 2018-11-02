@@ -37,13 +37,7 @@ public class TestSeatMapper extends AbstractDbutilsTestCase{
 	
 	private Seat parmSeat;
 	
-	@Before
-	public void init() throws Exception {
-		backOneTable("seat");
-		insertTestData();
-		exSeat = new Seat(1, "通知名", "2018-1-1", "通知地址", "座位号", 1);
-		parmSeat = new Seat(1, "通知名", "2018-1-1", "通知地址", "座位号", 1);
-	}
+	
 	
 	@Test
 	public void testGetList() {
@@ -112,9 +106,5 @@ public class TestSeatMapper extends AbstractDbutilsTestCase{
 		
 	}
 
-	@After
-	public void destory() throws Exception {
-		resumeTable();
-	}
 	
 }

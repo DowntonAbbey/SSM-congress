@@ -61,4 +61,9 @@ public class SeatServiceImpl implements SeatService{
 	public int deleteByNoticeIds(List<Integer> noticeIds) {
 		return seatMapper.deleteByNoticeIds(noticeIds);
 	}
+
+	@Override
+	public Seat getByNoticeId(Integer noticeId) {
+		return seatMapper.getByNoticeId(noticeId);
+	}
 }

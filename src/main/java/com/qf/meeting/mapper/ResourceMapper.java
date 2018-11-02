@@ -2,6 +2,7 @@ package com.qf.meeting.mapper;
 
 import java.util.List;
 
+
 import com.qf.meeting.bean.Resource;
 
 
@@ -15,6 +16,8 @@ public interface ResourceMapper {
 	
 	public List<Resource> getByNoticeIds(List<Integer> noticeIds);
 
+	public Resource getByNoticeId(Integer noticeId);
+	
 	public Resource getById(Integer resourceId);
 
 	public int add(Resource resource);

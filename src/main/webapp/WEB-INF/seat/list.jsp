@@ -8,11 +8,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 <script type="text/javascript">
 	function goPage(pageIndex){
-		$("#form1").attr("action","${pageContext.request.contextPath}/news/list");
+		$("#form1").attr("action","${pageContext.request.contextPath}/seat/list.action?pageIndex="+pageIndex);
 		$("#form1").submit();
 	}
 	function add() {
-		window.location.href = "${pageContext.request.contextPath}/page/news/add";
+		window.location.href = "${pageContext.request.contextPath}/page/seat/add.action";
 	}
 	
 	function deleteByNewsIds() {        
@@ -26,7 +26,7 @@
 			alert("你还没有选择任何内容！");        
 			}       
 		if (chk_value.length > 0) {           
-			location.href ="${pageContext.request.contextPath}/news/deleteByIds?idString=" + chk_value;        
+			location.href ="${pageContext.request.contextPath}/seat/deleteByIds.action?idString=" + chk_value;        
 			}
 	}
 </script>
@@ -42,7 +42,7 @@
 				<table width="100%" height="31" border="0" cellpadding="0"
 					cellspacing="0" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
 					<tr>
-						<td height="31"><div class="title">新闻管理</div></td>
+						<td height="31"><div class="title">座次安排管理</div></td>
 					</tr>
 				</table>
 			</td>
@@ -68,7 +68,7 @@
 							<form class="clearfix" action="${pageContext.request.contextPath}/emp/list/1" id="form1" method="post">
 								<div style="float: left">
 									<p style="float: left; margin-left: 30px;">
-										<label>新闻标题：</label>
+										<label>会议标题：</label>
 										<input class="text" list="rolelist" name="name" value="${p.bean}" style="width: 80px;" />
 									</p>
 									&nbsp;&nbsp;&nbsp;
@@ -110,23 +110,22 @@
 											<table width="100%" class="cont tr_color">
 												<tr>
 													<th><input type="checkbox" value="" /></th>
-													<th>新闻标题</th>
-													<th>新闻描述</th>
-													<th>新闻细节</th>
-													<th>新闻类型</th>
-													<th>照片地址</th>
+													<th>座次安排标题</th>
+													<th>座次安排时间</th>
+													<th>座次安排地址</th>
+													<th>座次安排号</th>
 													<th>操作</th>
 												</tr>
-											<c:forEach items="${list}" var="e">
+											<c:forEach items="${seats}" var="e">
 												<tr align="center" class="d">
-													<td><input type="checkbox" value="${e.newsId }" name="ids" /></td>
-													<td>${e.newsTitle}</td>
-													<td><a href="view.html">${e.newsDes}</a></td>
-													<td>${e.newsDetail}</td>
-													<td>${e.type eq '0'?'文本':''}${e.type eq '1'?'照片':''}</td>
-													<td>${e.photo}</td>
-													<td><a href="${pageContext.request.contextPath}/news/updateById/${e.newsId}">修改</a>&nbsp;&nbsp; <a
-														href="${pageContext.request.contextPath}/news/deleteById/${e.newsId}" onclick="del()">删除</a></td>
+													<td><input type="checkbox" value="${e.seatId }" name="ids" /></td>
+													<td>${e.noticeName}</td>
+													<td>${e.noticeTime}</td>
+													<td>${e.noticeAddress}</td>
+													<td>${e.seatNum}</td>
+													<td><a href="${pageContext.request.contextPath}/seat/updateById.action?seatId=${e.seatId}">修改</a>&nbsp;&nbsp; <a
+														href="${pageContext.request.contextPath}/seat/deleteById.action?seatId=${e.seatId}" onclick="del()">删除</a>
+													</td>
 												</tr>
                                                 </c:forEach>
 											</table>
@@ -152,7 +151,9 @@
                                 <input type="button" value="反选" />
                             <div style="float:right;"><b>
                                 <a href="#" onclick="goPage(1);">首页</a>&nbsp;&nbsp;&nbsp;
-								<a href="#" onclick="goPage(${p.pageIndex-1});">上一页</a>&nbsp;&nbsp;&nbsp;
+                                <c:if test="${p.pageIndex-1 > 0}">
+									<a href="#" onclick="goPage(${p.pageIndex-1});">上一页</a>&nbsp;&nbsp;&nbsp;
+								</c:if>
 								<c:forEach begin="${p.startNum}" end="${p.endNum}" step="1" var="num">
 									      <c:if test="${num==p.pageIndex}">
 									          <span style="color: red;">${num}</span>&nbsp;&nbsp;&nbsp;
@@ -161,7 +162,9 @@
 									         <a href="#" onclick="goPage(${num});">${num}</a>&nbsp;&nbsp;&nbsp;
 									      </c:if>
 									</c:forEach>
-								<a href="#" onclick="goPage(${p.pageIndex+1});">下一页</a>&nbsp;&nbsp;&nbsp;
+								<c:if test="${p.pageIndex-1 < pageCount}">
+									<a href="#" onclick="goPage(${p.pageIndex+1});">下一页</a>&nbsp;&nbsp;&nbsp;
+								</c:if>
 								<a href="#" onclick="goPage(${p.pageCount});">末页</a>&nbsp;&nbsp;&nbsp;
 								每页显示${p.pageSize}条&nbsp;&nbsp;&nbsp;
 								当前 ${p.pageIndex}/${p.pageCount}页&nbsp;&nbsp;&nbsp;

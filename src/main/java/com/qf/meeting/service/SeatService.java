@@ -13,6 +13,8 @@ public interface SeatService {
 	public List<Seat> getByNoticeIds(List<Integer> noticeIds);
 
 	public Seat getById(Integer seatId);
+	
+	public Seat getByNoticeId(Integer noticeId);
 
 	public int add(Seat seat);
 

@@ -25,6 +25,10 @@
   		select * from agenda where agendaId = #{agendaId}
   	</select>
   	
+  	<select id="getByNoticeId" resultType="Agenda">
+  		select * from agenda where noticeId = #{noticeId}
+  	</select>
+  	
   	<insert id="add" parameterType="Agenda">
   		insert into agenda values(null,#{noticeName},#{noticeTime},#{noticeAddress},#{agendaDetail},#{noticeId})
   	</insert>
@@ -35,18 +39,18 @@
   			<if test="noticeName != null and noticeName != ''">
   				noticeName = #{noticeName},
   			</if>
-  			<if test="noticeName != null and noticeName != ''">
-  				noticeName= #{noticeName},
+  			<if test="noticeTime != null and noticeTime != ''">
+  				noticeTime= #{noticeTime},
   			</if> 
   			<if test="noticeAddress != null and noticeAddress != ''">
   				noticeAddress = #{noticeAddress},
   			</if>
   			<if test="agendaDetail != null and agendaDetail != ''">
-  				noticeAddress = #{noticeAddress},
+  				agendaDetail = #{agendaDetail},
   			</if> 
-  			<if test="noticeId != null and noticeId != ''">
-  				noticeAddress = #{noticeAddress},
-  			</if> 
+  			
+  				noticeId = #{noticeId},
+  			
   		</set>
   		where agendaId = #{agendaId}
   	</update>

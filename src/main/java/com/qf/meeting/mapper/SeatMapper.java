@@ -2,6 +2,7 @@ package com.qf.meeting.mapper;
 
 import java.util.List;
 
+
 import com.qf.meeting.bean.Seat;
 
 public interface SeatMapper {
@@ -13,6 +14,8 @@ public interface SeatMapper {
 	public List<Seat> getByNoticeIds(List<Integer> noticeIds);
 
 	public Seat getById(Integer seatId);
+	
+	public Seat getByNoticeId(Integer noticeId);
 
 	public int add(Seat seat);
 

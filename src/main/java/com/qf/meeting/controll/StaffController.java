@@ -13,8 +13,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.qf.meeting.bean.Staff;
 import com.qf.meeting.service.StaffService;
+import com.qf.meeting.utils.Pager;
 
 @Controller
 public class StaffController {
@@ -23,9 +26,20 @@ public class StaffController {
 	private StaffService staffService;
 	
 	@RequestMapping("/staff/list")
-	public String getList(Model model) {
+	public String getList(Model model,Integer pageIndex) {
+		
+		Integer pageSize = 5; // 页面大小
+		// 使用分页插件 调用查询方法之前用插件
+		Page<?> page = PageHelper.startPage(pageIndex, pageSize); // 插件
+		
 		List<Staff> list = staffService.getList();
 		model.addAttribute("staffs",list);
+		
+		Integer totalCount = Integer.parseInt(page.getTotal() + ""); // 数目
+		int pageCont = page.getPages(); // 总页数
+		// 封装数据
+		Pager<Staff, String> p = new Pager<Staff, String>(pageIndex, totalCount, pageSize, pageCont,list, null);
+		model.addAttribute("p", p);
 		return "staff/list";
 		
 	}

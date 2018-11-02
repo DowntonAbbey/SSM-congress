@@ -4,8 +4,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/skin.css" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/Style/themes/default/easyui.css" />
+	<!--导入js的文件-->
+	<script src="${pageContext.request.contextPath}/static/Js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/static/Js/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
     <body>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -50,38 +53,34 @@
                                 <table width="100%">
                                     <tr>
                                         <td colspan="2">
-                                            <form action="${pageContext.request.contextPath}/emp/update.action" method="post" enctype="multipart/form-data">
+                                            <form action="${pageContext.request.contextPath}/agenda/update.action" method="post">
                                                 <table width="100%"class="cont">
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%">员工名：</td>
-                                                        <td width="25%"><input class="text" value="${emp.empName }" name="empName"/></td>
-                                                        <input type="hidden" value="${emp.empId }" name="empId"/>
+                                                        <td width="8%">会议议程标题：</td>
+                                                        <td width="25%"><input class="text" value="${agenda.noticeName }" name="agendaName"/></td>
+                                                        <input type="hidden" value="${agenda.agendaId}" name="agendaId"/>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
 													<tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>照片：</td>
-                                                        <td width="25%"><input type="file" name="file" value="${emp.photo }"></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>会议议程通知地址：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="noticeAddress" value="${agenda.noticeAddress}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>电话号码：</td>
-                                                        <td width="25%"><input class="text" placeholder="必填" name="empTel" value="${emp.empTel}"/></td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>会议议程细节：</td>
+                                                        <td width="25%"><input class="text" placeholder="必填" name="noticeDetail" value="${agenda.agendaDetail}"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="2%">&nbsp;</td>
-                                                        <td width="8%"><font color="red"><b>*</b></font>部门：</td>
-                                                        <td width="25%">
-                                                        	<select id="deptSelect" name="dept.deptId">
-                                                        		<option>--请选择--</option>
-                                                        	</select>
-                                                        </td>
+                                                        <td width="8%"><font color="red"><b>*</b></font>会议议程通知时间：</td>
+                                                        <td width="25%"><input type="text" id="dd" name="noticeTime"/></td>
                                                         <td></td>
                                                         <td width="2%">&nbsp;</td>
                                                     </tr>
@@ -135,21 +134,24 @@
                 </td>           
             </tr>
         </table>
-       	<script type="text/javascript">
-       		$(function(){
-       			$.ajax({
-       				url:"${pageContext.request.contextPath}/dept/deptType.action",
-       				resultType:"json",
-       				success:function(result){
-       					for(var i=0;i<result.length;i++){
-       						var deptId = result[i].deptId;
-       						var deptName = result[i].deptName;
-       						$("#deptSelect").append("<option value='"+deptId+"'>"+deptName+"</option>");
-       						$("#deptSelect").val("${emp.dept.deptId}");
-       					}
-       				}
-       			});
-       		})
-       	</script>
+        <script type="text/javascript">
+	
+		$(document).ready(function() {
+			$.fn.datebox.defaults.formatter = function(date) {
+				var y = date.getFullYear();
+				var m = date.getMonth() + 1;
+				var d = date.getDate();
+				return y + '-' + m + '-' + d;
+			}
+			$("#dd").datetimebox({
+				required: true,
+				value: '${agenda.noticeTime}',
+				currentText: "今天",
+				closeText: "关闭"
+			});
+			
+			
+		})
+	</script>
     </body>
 </html>

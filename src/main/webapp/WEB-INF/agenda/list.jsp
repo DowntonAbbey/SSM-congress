@@ -8,11 +8,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/Js/jquery.min.js"></script>
 <script type="text/javascript">
 	function goPage(pageIndex){
-		$("#form1").attr("action","${pageContext.request.contextPath}/notice/list.action?pageIndex="+pageIndex);
+		$("#form1").attr("action","${pageContext.request.contextPath}/agenda/list.action?pageIndex="+pageIndex);
 		$("#form1").submit();
 	}
 	function add() {
-		window.location.href = "${pageContext.request.contextPath}/page/notice/add.action";
+		window.location.href = "${pageContext.request.contextPath}/page/agenda/add.action";
 	}
 	
 	function deleteByNewsIds() {        
@@ -26,7 +26,7 @@
 			alert("你还没有选择任何内容！");        
 			}       
 		if (chk_value.length > 0) {           
-			location.href ="${pageContext.request.contextPath}/notice/deleteByIds.action?idString=" + chk_value;        
+			location.href ="${pageContext.request.contextPath}/agenda/deleteByIds.action?idString=" + chk_value;        
 			}
 	}
 </script>
@@ -42,7 +42,7 @@
 				<table width="100%" height="31" border="0" cellpadding="0"
 					cellspacing="0" background="${pageContext.request.contextPath}/static/Images/content_bg.gif">
 					<tr>
-						<td height="31"><div class="title">会议通知管理</div></td>
+						<td height="31"><div class="title">会议议程管理</div></td>
 					</tr>
 				</table>
 			</td>
@@ -68,7 +68,7 @@
 							<form class="clearfix" action="${pageContext.request.contextPath}/emp/list/1" id="form1" method="post">
 								<div style="float: left">
 									<p style="float: left; margin-left: 30px;">
-										<label>会议通知标题：</label>
+										<label>会议标题：</label>
 										<input class="text" list="rolelist" name="name" value="${p.bean}" style="width: 80px;" />
 									</p>
 									&nbsp;&nbsp;&nbsp;
@@ -110,19 +110,21 @@
 											<table width="100%" class="cont tr_color">
 												<tr>
 													<th><input type="checkbox" value="" /></th>
-													<th>会议通知标题</th>
-													<th>会议通知地址</th>
-													<th>会议通知时间</th>
+													<th>会议议程标题</th>
+													<th>会议议程时间</th>
+													<th>会议议程地址</th>
+													<th>会议议程细节</th>
 													<th>操作</th>
 												</tr>
-											<c:forEach items="${notices}" var="e">
+											<c:forEach items="${agendas}" var="e">
 												<tr align="center" class="d">
-													<td><input type="checkbox" value="${e.noticeId }" name="ids" /></td>
-													<td>${e.noticeTitle}</td>
-													<td>${e.noticeAddress}</td>
+													<td><input type="checkbox" value="${e.agendaId }" name="ids" /></td>
+													<td>${e.noticeName}</td>
 													<td>${e.noticeTime}</td>
-													<td><a href="${pageContext.request.contextPath}/notice/updateById.action?noticeId=${e.noticeId}">修改</a>&nbsp;&nbsp; <a
-														href="${pageContext.request.contextPath}/notice/deleteById.action?noticeId=${e.noticeId}" onclick="del()">删除</a>
+													<td>${e.noticeAddress}</td>
+													<td>${e.agendaDetail}</td>
+													<td><a href="${pageContext.request.contextPath}/agenda/updateById.action?agendaId=${e.agendaId}">修改</a>&nbsp;&nbsp; <a
+														href="${pageContext.request.contextPath}/agenda/deleteById.action?agendaId=${e.agendaId}" onclick="del()">删除</a>
 													</td>
 												</tr>
                                                 </c:forEach>
@@ -134,7 +136,7 @@
 						</td>
 						<td width="2%">&nbsp;</td>
 					</tr>
-				  <!--列表展示结束 -->
+				 <!--列表展示结束 -->
                         <tr>
                             <td height="40" colspan="4">
                                 <table width="100%" height="1" border="0" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
@@ -186,7 +188,5 @@
 				src="${pageContext.request.contextPath}/static/Images/buttom_right.gif" width="16" height="17" /></td>
 		</tr>
 	</table>
-	
-	
 </body>
 </html>

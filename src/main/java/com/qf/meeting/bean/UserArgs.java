@@ -10,6 +10,8 @@ public class UserArgs extends User{
 	private static final long serialVersionUID = 9180217286355384762L;
 
 	private Integer staffParam;
+	
+	
 
 	public Integer getStaffParam() {
 		return staffParam;
